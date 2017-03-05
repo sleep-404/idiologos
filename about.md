@@ -4,12 +4,4 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jekyll" %} /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+Matthew Morris is a native of the U.S. Southwest, of largely British and Scandinavian ancestry. He has been greatly influenced by J. R. R. Tolkien, with whom he shares a birthday. Among his favorite languages are Old English, Latin, Erlang, Southern Paiute, Mandarin and Wu Chinese, Prolog, Old Frisian, Saterland Frisian, Scala, Ruby, Python, and KornShell.
