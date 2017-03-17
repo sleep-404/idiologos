@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Open for Comments</title>
+  <meta name="description" content="Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, ...">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/03/17/open-for-comments.html">
+  <link rel="alternate" type="application/rss+xml" title="Idiologos" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Idiologos</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Open for Comments</h1>
+    <p class="post-meta"><time datetime="2017-03-17T17:59:00-05:00" itemprop="datePublished">Mar 17, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</p>
+
+<p>I have given some consideration to the comments problem and come to a decision. The options I’ve given consideration to include Disqus, Muut, HTML Comment Box, Remarkbox, GoTell, Isso, Pelican Comments, and Staticman.</p>
+
+<h2 id="disqus">Disqus</h2>
+
+<p><a href="https://disqus.com/">Disqus</a> is the obvious choice. It’s common and free to use. However, I don’t like the idea of requiring people to sign in to post a comment, or worse: assuming that anyone who wants to post a comment should already have a Disqus account. I might as well assume everyone who visits this site is using a particular operating system or web browser. Also, the Disqus business model is based on ad revenue. I don’t begrudge them that, but I’d rather not clutter up my site with ads.</p>
+
+<p><strong>Pros:</strong> Nobody ever got fired for incorporating Disqus in their site.</p>
+
+<p><strong>Cons:</strong> Requires login. Privacy issues. Ads. Comments controlled by a third party.</p>
+
+<p>I have also given some consideration to other similar services, such as <a href="https://muut.com/">Muut</a> and <a href="https://www.discourse.org/">Discourse</a>. I found nothing to recommend Muut over Disqus. Discourse is open source, and comments are portable, but I would either have to host them myself or pay Discourse to host them for me. That’s their business model, and I don’t begrudge them that.</p>
+
+<h2 id="html-comment-box">HTML Comment Box</h2>
+
+<p><a href="http://www.htmlcommentbox.com/">HTML Comment Box</a> is a service for hosting comments through an HTML (and JavaScript) widget. It’s very much like the above solutions except that it’s free, except possibly for “heavy users”. Comments are left “anonymously” (pseudonymously, really), with no e-mail address required. An HTML Comment Box would need to be included in each post. HTML Comment Box has several settings, and comments can be moderated using a Google account. The widget can be styled using CSS. In recent months a <a href="https://labs.detectify.com/2017/01/18/stored-xss-ing-millions-of-sites-through-html-comment-box/">vulnerability</a> was discovered in HTML Comment Box, which the developer quickly patched when he was notified. I don’t consider myself an expert on security, but I don’t regard the discovery of the vulnerability as meaning that HTML Comment Box is necessarily less secure than other options. Indeed, the fact that the vulnerability was found so recently probably means that security is pretty high on the developer’s list of priorities right now. I commend the developer for his quick response.</p>
+
+<p><strong>Pros:</strong> Free to use, at least for low-bandwidth users. No logins required. No ads.</p>
+
+<p><strong>Cons:</strong> Comments controlled by a third party, although migration is allowed.</p>
+
+<h2 id="remarkbox">Remarkbox</h2>
+
+<p><a href="https://www.remarkbox.com/">Remarkbox</a> is another service for hosting comments through an HTML/JavaScript widget. The author of Remarkbox uses Pelican, a Python static site generator. Remarkbox is free to use, but requires a monthly fee for the ability to moderate comments. Instead of choosing a display name, commenters are distinguished by a random series of alphanumeric characters, such as “6r2RkmmH”, generated from their e-mail address. After you post a comment, you receive a verification e-mail. If you don’t verify your e-mail, then your display name appears as “unverified”, rather than the random characters. Comments can be exported as JSON.</p>
+
+<p><strong>Pros:</strong> Free to use. No logins required. No ads.</p>
+
+<p><strong>Cons:</strong> Moderation is not free. Comments controlled by a third party, although exporting comments is allowed. Commenters can’t choose a display name.</p>
+
+<h2 id="gotell">GoTell</h2>
+
+<p><a href="https://github.com/netlify/gotell">GoTell</a>, just recently renamed from “Netlify Comments”, is Netlify’s own solution for adding comments to a static site. Setting up GoTell is a bit more involved than the previous options. You need to clone the Netlify Comments starter template and push it to your GitHub account, then visit Netlify to integrate comment threads into your site. I’m not opposed to doing any of that. However, one section on the GoTell README page, titled “Setting up the API”, gave me pause, particularly the words: “You’ll need to run the API on a server.” If I understand this correctly, I would need to run GoTell on a separate server in order to integrate GoTell comments into my static site. If my understanding is correct, then I feel I might as well host my entire site on Heroku, Amazon AWS, etc.</p>
+
+<p><strong>Pros:</strong> Free to use. No logins required. No ads. Comments are controlled by the site owner.</p>
+
+<p><strong>Cons:</strong> Setup is a bit involved. Appears to require a separate host to process the comments.</p>
+
+<h2 id="isso">Isso</h2>
+
+<p><a href="https://posativ.org/isso/">Isso</a> is a commenting server written in Python that stores comments in a SQLite database file. Users may choose a display name or use the default “Anonymous”. Name, e-mail address, and website URL are all optional; no login is required. Comments may be posted automatically or moderated according to the site owner’s preference. Unfortunately for my purposes, Isso requires configuring a server external to my static site.</p>
+
+<p><strong>Pros:</strong> Free to use. No logins required. No ads. Comments are controlled by the site owner.</p>
+
+<p><strong>Cons:</strong> Setup is a bit involved. Requires a separate host to store the comments.</p>
+
+<h2 id="pelican-comment-system">Pelican Comment System</h2>
+
+<p>The <a href="https://bernhard.scheirle.de/posts/2014/March/29/static-comments-via-email/">Pelican Comment System</a> is specifically for use with the Pelican static site generator, which is written in Python. Choosing this solution would necessitate migrating my site from Jekyll to Pelican. The advantage of this particular solution is that it’s intended specifically for static sites. Comments are e-mailed to the site owner in markdown format. The site owner copies the e-mails to a directory, from which they are automatically incorporated in the site the next time it is built.</p>
+
+<p><strong>Pros:</strong> Free to use. No logins required. No ads. Comments are controlled by the site owner. Doesn’t require a separate host for storing or processing comments (if you don’t count e-mail servers).</p>
+
+<p><strong>Cons:</strong> Setup is a bit involved. Site owner must copy comments manually (or set up a process for automatically importing them from a mailbox to a particular folder).</p>
+
+<h2 id="staticman">Staticman</h2>
+
+<p><a href="https://staticman.net/">Staticman</a> is another solution intended specifically for use with static sites. Staticman operates as a GitHub bot. The site owner must add Staticman (GitHub account: staticmanapp) as a collaborator to the site repository. When a user posts a comment, the comment is sent to the Staticman API web server, which passes the comment along to the Staticman GitHub account. If moderation is not enabled, Staticman automatically pushes the comment to the site repository. If moderation is enabled, Staticman submits a pull request, and the site owner can choose whether or not to merge the comment. Obviously, if moderation is enabled, comments will not be posted automatically, and when they appear on the site depends on the site owner. Recently Staticman has added support for reCAPTCHA. This should help cut down on spam comments, but reCAPTCHA doesn’t support all browsers. It does support the most recent versions of the most common browsers on the most common operating systems, so I’m not sure if it’s that big of a deal; however, using reCAPTCHA is another obstacle to posting comments.</p>
+
+<p><strong>Pros:</strong> Free to use. No logins required. No ads. Comments are controlled by the site owner. Choice between automatic posting and moderation. Doesn’t require a separate host for storing or processing comments (if you don’t count the Staticman API web server and GitHub).</p>
+
+<p><strong>Cons:</strong> Setup is a bit involved. Site owner must decide how to handle spam comments. May impact the time required to generate the site.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The solutions that appeal to me most strongly are the self-hosted solutions and Staticman. For now I’ll go with Staticman. I will likely need to learn more about Git/GitHub and Jekyll/Liquid, and to refresh my memory of JavaScript, HTML, and CSS to use it effectively, but accomplishing things like that, and writing about them, is very much the purpose of this site.</p>
+
+<p><strong>Addendum:</strong> I said I’d implement comments with this post, and I intend to do so soon, but I’ve run into some trouble with Jekyll not generating posts. I’ve looked into various reasons for this happening. I don’t think it’s related to the timestamp, and I’m pretty sure it’s not a browser cache issue, as I checked the directory where the new post should have been generated, and it wasn’t there. Strangely, the problem seems to be fixed now, but what bothers me is that I don’t know what I did to fix it. Maybe it was a time-related issue after all. Anyway, with that delay I’m just going to make this post and then implement comments afterwards, hopefully before the end of the week.</p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Idiologos</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Idiologos
+            
+            </li>
+            
+            <li><a href="mailto:anglus@gmail.com">anglus@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/anglus"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">anglus</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/sumwiht"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">sumwiht</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Musings about language, computation, and the intersection of the two.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
