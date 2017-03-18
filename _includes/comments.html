@@ -20,7 +20,9 @@
     <textarea style="width:70%" name="fields[message]" rows="12"></textarea>
   </div>
   
-  <button type="submit">Submit Comment</button>
+  <div>
+    <button type="submit">Submit Comment</button>
+  </div>
 </form>
 
 <!-- Static comments -->
@@ -30,7 +32,10 @@
 <!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
 
 {% if site.data.comments[page.slug] %}
-<div>
+<p>
+<hr />
+<p>
+  <article class="comments">
 	<h2>
       {% if site.data.comments[page.slug].size > 1 %}
         {{ site.data.comments[page.slug] | size }}
@@ -40,8 +45,10 @@
     {% assign comments = site.data.comments[page.slug] | sort %}
 
     {% for comment in comments %}
+    <fieldset>
       <legend><strong>{{ comment[1].name }}</strong><legend>
       <p>{{ comment[1].message | markdownify }} </p> 
+    </fieldset>
     {% endfor %}
-</div>
+  </article>
 {% endif %}
