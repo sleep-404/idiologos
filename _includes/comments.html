@@ -1,0 +1,51 @@
+<p>
+<hr />
+<p/>
+
+<!-- Comment form -->
+<h3>Post a comment:</h3>
+<form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
+  <input name="options[redirect]" type="hidden" value="https://idiologos.netlify.com">
+  <input name="options[slug]" type="hidden" value="{{ page.slug }}">
+  <div>
+    <legend>Name</legend>
+    <input name="fields[name]" type="text">
+  </div>
+  <div>
+    <legend>E-mail (optional)</legend>
+    <input name="fields[email]" type="email">
+  </div>
+  <div>
+    <legend>Comment</legend>
+    <textarea style="width:70%" name="fields[message]" rows="12"></textarea>
+  </div>
+  
+  <button type="submit">Submit Comment</button>
+</form>
+
+<!-- Static comments -->
+<!-- Partly based on Made Mistakes' comments.html file: -->
+<!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html -->
+<!-- Also partly based on Eduardo Boucas' reviews.html file -->
+<!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
+
+{% if site.data.comments[page.slug] %}
+<div>
+	<h2>
+      {% if site.data.comments[page.slug].size > 1 %}
+        {{ site.data.comments[page.slug] | size }}
+      {% endif %}
+      Comments
+    </h2>
+    {% assign comments = site.data.comments[page.slug] | sort %}
+
+    {% for comment in comments %}
+      <article>
+        <div>
+          <legend><strong>{{ comment[1].name }}</strong><legend>
+          <p>{{ comment[1].message | markdownify }} </p> 
+        </div>
+      </article>
+    {% endfor %}
+</div>
+{% endif %}

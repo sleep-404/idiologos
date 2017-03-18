@@ -71,3 +71,5 @@ The [Pelican Comment System](https://bernhard.scheirle.de/posts/2014/March/29/st
 The solutions that appeal to me most strongly are the self-hosted solutions and Staticman. For now I'll go with Staticman. I will likely need to learn more about Git/GitHub and Jekyll/Liquid, and to refresh my memory of JavaScript, HTML, and CSS to use it effectively, but accomplishing things like that, and writing about them, is very much the purpose of this site. 
 
 **Addendum:** I said I'd implement comments with this post, and I intend to do so soon, but I've run into some trouble with Jekyll not generating posts. I've looked into various reasons for this happening. I don't think it's related to the timestamp, and I'm pretty sure it's not a browser cache issue, as I checked the directory where the new post should have been generated, and it wasn't there. Strangely, the problem seems to be fixed now, but what bothers me is that I don't know what I did to fix it. Maybe it was a time-related issue after all. Anyway, with that delay I'm just going to make this post and then implement comments afterwards, hopefully before the end of the week. 
+
+{% include comments.html %}

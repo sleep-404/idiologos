@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-17T18:42:37-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-18T02:38:53-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
 </subtitle><entry><title type="html">Open for Comments</title><link href="http://localhost:4000/2017/03/17/open-for-comments.html" rel="alternate" type="text/html" title="Open for Comments" /><published>2017-03-17T17:59:00-05:00</published><updated>2017-03-17T17:59:00-05:00</updated><id>http://localhost:4000/2017/03/17/open-for-comments</id><content type="html" xml:base="http://localhost:4000/2017/03/17/open-for-comments.html">&lt;p&gt;Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.&lt;/p&gt;
 
 &lt;p&gt;I have given some consideration to the comments problem and come to a decision. The options I’ve given consideration to include Disqus, Muut, HTML Comment Box, Remarkbox, GoTell, Isso, Pelican Comments, and Staticman.&lt;/p&gt;
@@ -65,7 +65,42 @@
 
 &lt;p&gt;The solutions that appeal to me most strongly are the self-hosted solutions and Staticman. For now I’ll go with Staticman. I will likely need to learn more about Git/GitHub and Jekyll/Liquid, and to refresh my memory of JavaScript, HTML, and CSS to use it effectively, but accomplishing things like that, and writing about them, is very much the purpose of this site.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Addendum:&lt;/strong&gt; I said I’d implement comments with this post, and I intend to do so soon, but I’ve run into some trouble with Jekyll not generating posts. I’ve looked into various reasons for this happening. I don’t think it’s related to the timestamp, and I’m pretty sure it’s not a browser cache issue, as I checked the directory where the new post should have been generated, and it wasn’t there. Strangely, the problem seems to be fixed now, but what bothers me is that I don’t know what I did to fix it. Maybe it was a time-related issue after all. Anyway, with that delay I’m just going to make this post and then implement comments afterwards, hopefully before the end of the week.&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><summary type="html">Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</summary></entry><entry><title type="html">Technical Considerations</title><link href="http://localhost:4000/2017/03/14/technical-considerations.html" rel="alternate" type="text/html" title="Technical Considerations" /><published>2017-03-14T21:40:00-05:00</published><updated>2017-03-14T21:40:00-05:00</updated><id>http://localhost:4000/2017/03/14/technical-considerations</id><content type="html" xml:base="http://localhost:4000/2017/03/14/technical-considerations.html">&lt;p&gt;Happy Pi Day!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Addendum:&lt;/strong&gt; I said I’d implement comments with this post, and I intend to do so soon, but I’ve run into some trouble with Jekyll not generating posts. I’ve looked into various reasons for this happening. I don’t think it’s related to the timestamp, and I’m pretty sure it’s not a browser cache issue, as I checked the directory where the new post should have been generated, and it wasn’t there. Strangely, the problem seems to be fixed now, but what bothers me is that I don’t know what I did to fix it. Maybe it was a time-related issue after all. Anyway, with that delay I’m just going to make this post and then implement comments afterwards, hopefully before the end of the week.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;hr /&gt;
+&lt;p /&gt;
+
+&lt;!-- Comment form --&gt;
+&lt;h3&gt;Post a comment:&lt;/h3&gt;
+&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
+  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;open-for-comments&quot; /&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Name&lt;/legend&gt;
+    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Comment&lt;/legend&gt;
+    &lt;textarea style=&quot;width:70%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  
+  &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+
+
+&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><summary type="html">Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</summary></entry><entry><title type="html">Technical Considerations</title><link href="http://localhost:4000/2017/03/14/technical-considerations.html" rel="alternate" type="text/html" title="Technical Considerations" /><published>2017-03-14T21:40:00-05:00</published><updated>2017-03-14T21:40:00-05:00</updated><id>http://localhost:4000/2017/03/14/technical-considerations</id><content type="html" xml:base="http://localhost:4000/2017/03/14/technical-considerations.html">&lt;p&gt;Happy Pi Day!&lt;/p&gt;
 
 &lt;p&gt;I’ve been quiet lately for a few reasons, the most significant of which is that I’ve been focusing on completing the online course, &lt;a href=&quot;https://www.futurelearn.com/courses/functional-programming-erlang&quot;&gt;“Functional Programming in Erlang”&lt;/a&gt;, taught by Simon Thompson of the University of Kent, and hosted by FutureLearn. I may discuss that experience in a future post, but in this post I’d like to focus on my general plans for this web log.&lt;/p&gt;
 
@@ -81,7 +116,42 @@
 
 &lt;p&gt;In addition to Jekyll, I am also considering Pelican (Python) and Obelisk (Elixir) to statically generate this blog. If I move to a dynamic site, I have numerous options, including Rails (Ruby), Sinatra (Ruby), Django (Python), Flask (Python), Phoenix (Elixir), Zotonic (Erlang), Nitrogen (Erlang), and N2O (Erlang). Of course, I would need to move this site from Netlify to another host, as Netlify only hosts static sites.&lt;/p&gt;
 
-&lt;p&gt;Anyway, that’s where I’m at now. My goal this week is to implement comments. By the time my next post appears, I should have comments enabled, one way or another.&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="pelican" /><category term="obelisk" /><category term="python" /><category term="ruby" /><category term="elixir" /><category term="erlang" /><category term="comments" /><summary type="html">Happy Pi Day!</summary></entry><entry><title type="html">Incipit Historia</title><link href="http://localhost:4000/2017/03/04/incipit-historia.html" rel="alternate" type="text/html" title="Incipit Historia" /><published>2017-03-04T16:49:39-06:00</published><updated>2017-03-04T16:49:39-06:00</updated><id>http://localhost:4000/2017/03/04/incipit-historia</id><content type="html" xml:base="http://localhost:4000/2017/03/04/incipit-historia.html">&lt;p&gt;As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.&lt;/p&gt;
+&lt;p&gt;Anyway, that’s where I’m at now. My goal this week is to implement comments. By the time my next post appears, I should have comments enabled, one way or another.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;hr /&gt;
+&lt;p /&gt;
+
+&lt;!-- Comment form --&gt;
+&lt;h3&gt;Post a comment:&lt;/h3&gt;
+&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
+  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;technical-considerations&quot; /&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Name&lt;/legend&gt;
+    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Comment&lt;/legend&gt;
+    &lt;textarea style=&quot;width:70%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  
+  &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+
+
+&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="pelican" /><category term="obelisk" /><category term="python" /><category term="ruby" /><category term="elixir" /><category term="erlang" /><category term="comments" /><summary type="html">Happy Pi Day!</summary></entry><entry><title type="html">Incipit Historia</title><link href="http://localhost:4000/2017/03/04/incipit-historia.html" rel="alternate" type="text/html" title="Incipit Historia" /><published>2017-03-04T16:49:39-06:00</published><updated>2017-03-04T16:49:39-06:00</updated><id>http://localhost:4000/2017/03/04/incipit-historia</id><content type="html" xml:base="http://localhost:4000/2017/03/04/incipit-historia.html">&lt;p&gt;As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.&lt;/p&gt;
 
 &lt;p&gt;When I first learned about the Internet and the World Wide Web in the mid-1990s, I imagined them as a vast library. When I first logged on, I found it thrilling to visit web pages in other countries and realize that the content I was seeing was hosted on a computer far away, yet arrived on my screen almost instantly–or about as instantly as a 14.4 Kbps modem could manage. At that time there wasn’t much content, even compared with my local library. This was before Wikipedia, YouTube, Flickr, SoundCloud, and so on.&lt;/p&gt;
 
@@ -89,4 +159,39 @@
 
 &lt;p&gt;I have used open source software for almost 20 years without giving anything back. I have also learned much (or so I think!) about language and computer programming in my own personal quest to satisfy my curiosity about such subjects, and hopefully to make a living as well. But a lake without an outlet becomes a dead sea. My intention with this web log is to share what I’ve learned, or what I think, about certain subjects, particularly related to linguistics and computer programming. In some areas I may have a pretty solid grasp of the subject, but in many areas I will be posting as I learn.&lt;/p&gt;
 
-&lt;p&gt;Just to whet your appetite (or alternatively, to warn you off), here are a few topics I’m currently interested in, ordered more or less by my grasp of them: etymology, onomastics, functional programming, logic programming, ontology, concurrent programming, graph databases and graph processors, and machine learning.&lt;/p&gt;</content><author><name></name></author><category term="Internet" /><category term="books" /><category term="knowledge" /><summary type="html">As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.</summary></entry></feed>
+&lt;p&gt;Just to whet your appetite (or alternatively, to warn you off), here are a few topics I’m currently interested in, ordered more or less by my grasp of them: etymology, onomastics, functional programming, logic programming, ontology, concurrent programming, graph databases and graph processors, and machine learning.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;hr /&gt;
+&lt;p /&gt;
+
+&lt;!-- Comment form --&gt;
+&lt;h3&gt;Post a comment:&lt;/h3&gt;
+&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
+  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;incipit-historia&quot; /&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Name&lt;/legend&gt;
+    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Comment&lt;/legend&gt;
+    &lt;textarea style=&quot;width:70%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  
+  &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+
+
+&lt;/p&gt;</content><author><name></name></author><category term="Internet" /><category term="books" /><category term="knowledge" /><summary type="html">As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.</summary></entry></feed>

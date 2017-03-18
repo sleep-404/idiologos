@@ -13,3 +13,5 @@ As interested as I was in computers and the Internet, I ended up pursuing a diff
 I have used open source software for almost 20 years without giving anything back. I have also learned much (or so I think!) about language and computer programming in my own personal quest to satisfy my curiosity about such subjects, and hopefully to make a living as well. But a lake without an outlet becomes a dead sea. My intention with this web log is to share what I've learned, or what I think, about certain subjects, particularly related to linguistics and computer programming. In some areas I may have a pretty solid grasp of the subject, but in many areas I will be posting as I learn.
 
 Just to whet your appetite (or alternatively, to warn you off), here are a few topics I'm currently interested in, ordered more or less by my grasp of them: etymology, onomastics, functional programming, logic programming, ontology, concurrent programming, graph databases and graph processors, and machine learning.
+
+{% include comments.html %}

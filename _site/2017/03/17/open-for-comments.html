@@ -132,6 +132,41 @@
 
 <p><strong>Addendum:</strong> I said I’d implement comments with this post, and I intend to do so soon, but I’ve run into some trouble with Jekyll not generating posts. I’ve looked into various reasons for this happening. I don’t think it’s related to the timestamp, and I’m pretty sure it’s not a browser cache issue, as I checked the directory where the new post should have been generated, and it wasn’t there. Strangely, the problem seems to be fixed now, but what bothers me is that I don’t know what I did to fix it. Maybe it was a time-related issue after all. Anyway, with that delay I’m just going to make this post and then implement comments afterwards, hopefully before the end of the week.</p>
 
+<p>
+<hr />
+<p />
+
+<!-- Comment form -->
+<h3>Post a comment:</h3>
+<form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
+  <input name="options[redirect]" type="hidden" value="https://idiologos.netlify.com" />
+  <input name="options[slug]" type="hidden" value="open-for-comments" />
+  <div>
+    <legend>Name</legend>
+    <input name="fields[name]" type="text" />
+  </div>
+  <div>
+    <legend>E-mail (optional)</legend>
+    <input name="fields[email]" type="email" />
+  </div>
+  <div>
+    <legend>Comment</legend>
+    <textarea style="width:70%" name="fields[message]" rows="12"></textarea>
+  </div>
+  
+  <button type="submit">Submit Comment</button>
+</form>
+
+<!-- Static comments -->
+<!-- Partly based on Made Mistakes' comments.html file: -->
+<!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html -->
+<!-- Also partly based on Eduardo Boucas' reviews.html file -->
+<!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
+
+
+
+</p>
+
   </div>
 
   

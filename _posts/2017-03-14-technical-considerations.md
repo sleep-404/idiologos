@@ -21,3 +21,5 @@ The fourth option would be hosting my own comments offsite. However, I feel that
 In addition to Jekyll, I am also considering Pelican (Python) and Obelisk (Elixir) to statically generate this blog. If I move to a dynamic site, I have numerous options, including Rails (Ruby), Sinatra (Ruby), Django (Python), Flask (Python), Phoenix (Elixir), Zotonic (Erlang), Nitrogen (Erlang), and N2O (Erlang). Of course, I would need to move this site from Netlify to another host, as Netlify only hosts static sites.
 
 Anyway, that's where I'm at now. My goal this week is to implement comments. By the time my next post appears, I should have comments enabled, one way or another.
+
+{% include comments.html %}
