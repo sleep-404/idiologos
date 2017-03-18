@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-18T03:05:58-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-18T03:17:55-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
 </subtitle><entry><title type="html">Open for Comments</title><link href="http://localhost:4000/2017/03/17/open-for-comments.html" rel="alternate" type="text/html" title="Open for Comments" /><published>2017-03-17T17:59:00-05:00</published><updated>2017-03-17T17:59:00-05:00</updated><id>http://localhost:4000/2017/03/17/open-for-comments</id><content type="html" xml:base="http://localhost:4000/2017/03/17/open-for-comments.html">&lt;p&gt;Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.&lt;/p&gt;
 
 &lt;p&gt;I have given some consideration to the comments problem and come to a decision. The options I’ve given consideration to include Disqus, Muut, HTML Comment Box, Remarkbox, GoTell, Isso, Pelican Comments, and Staticman.&lt;/p&gt;
@@ -104,7 +104,6 @@
 &lt;p&gt;
 &lt;hr /&gt;
 &lt;p&gt;
-  &lt;article class=&quot;comments&quot;&gt;
 	&lt;h2&gt;
       
       Comments
@@ -112,16 +111,13 @@
     
 
     
-    &lt;fieldset&gt;
-      &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;legend&gt;
-      &lt;p&gt;&lt;p&gt;This is a test.&lt;/p&gt;
- &lt;/p&gt; 
-    &amp;lt;/fieldset&amp;gt;
+        &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;legend&gt;
+        &lt;p&gt;&lt;p&gt;This is a test.&lt;/p&gt;
+&lt;/p&gt;
     
-  &amp;lt;/article&amp;gt;
 
 
-&lt;/legend&gt;&lt;/legend&gt;&lt;/fieldset&gt;&lt;/article&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><summary type="html">Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</summary></entry><entry><title type="html">Technical Considerations</title><link href="http://localhost:4000/2017/03/14/technical-considerations.html" rel="alternate" type="text/html" title="Technical Considerations" /><published>2017-03-14T21:40:00-05:00</published><updated>2017-03-14T21:40:00-05:00</updated><id>http://localhost:4000/2017/03/14/technical-considerations</id><content type="html" xml:base="http://localhost:4000/2017/03/14/technical-considerations.html">&lt;p&gt;Happy Pi Day!&lt;/p&gt;
+&lt;/legend&gt;&lt;/legend&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><summary type="html">Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</summary></entry><entry><title type="html">Technical Considerations</title><link href="http://localhost:4000/2017/03/14/technical-considerations.html" rel="alternate" type="text/html" title="Technical Considerations" /><published>2017-03-14T21:40:00-05:00</published><updated>2017-03-14T21:40:00-05:00</updated><id>http://localhost:4000/2017/03/14/technical-considerations</id><content type="html" xml:base="http://localhost:4000/2017/03/14/technical-considerations.html">&lt;p&gt;Happy Pi Day!&lt;/p&gt;
 
 &lt;p&gt;I’ve been quiet lately for a few reasons, the most significant of which is that I’ve been focusing on completing the online course, &lt;a href=&quot;https://www.futurelearn.com/courses/functional-programming-erlang&quot;&gt;“Functional Programming in Erlang”&lt;/a&gt;, taught by Simon Thompson of the University of Kent, and hosted by FutureLearn. I may discuss that experience in a future post, but in this post I’d like to focus on my general plans for this web log.&lt;/p&gt;
 
