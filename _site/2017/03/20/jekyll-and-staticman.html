@@ -272,6 +272,8 @@
 <p>
     <h3>
     
+      2
+    
     Comments:
     </h3>
   </p>
@@ -281,13 +283,101 @@
 <p>
     
       <br />
-      <legend><strong>Michael Rose</strong></legend>
+      <legend>
+        
+        <strong>Michael Rose</strong>
+        
+      </legend>
       <em>March 21, 2017</em>
       <p><p>Great write-up!</p>
 
 <p>RE: your issue with <code class="highlighter-rouge">&lt;p&gt;</code> tags in the message. The <code class="highlighter-rouge">markdownify</code> filter is adding <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code> around the message text. So when you wrapped <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">comment[1].message</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">markdownify</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> with a paragraph tag you were essentially nesting <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code> inside of another <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code>.</p>
 
 <p>I would just remove it all together and simply do: <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">comment[1].message</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">markdownify</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code></p>
+</p>
+      <hr />
+    
+      <br />
+      <legend>
+        
+          <a href="http://idiologos.netlify.com">
+        
+        <strong>Matthew Morris</strong>
+        
+          </a>
+        
+      </legend>
+      <em>March 21, 2017</em>
+      <p><p>Thanks for the compliment and the tip!</p>
+
+<p>I’ve been able to simplify my <code class="highlighter-rouge">comments.html</code> file a bit by removing paragraph tags one by one to see what caused the formatting to break. I removed and re-added the paragraph tags around the message text, and it didn’t seem to have any effect other than to squash the message text up against the date when I removed the tags. Through the process of elimination, I discovered that the crucial tag was the <code class="highlighter-rouge">&lt;p&gt;</code> tag above the Liquid <code class="highlighter-rouge">assign</code> tag. If I removed it, the formatting in the posted comments was displayed as raw HTML, except for the portions in Markdown. If I tried to close the tag, a raw <code class="highlighter-rouge">&lt;/p&gt;</code> tag would show up after the last posted comment.</p>
+
+<p>I realized the root of the problem likely had to do with the interplay between the HTML tags and the Liquid tags. I moved the problematic <code class="highlighter-rouge">&lt;p&gt;</code> tag below the <code class="highlighter-rouge">assign</code> tag, but above the <code class="highlighter-rouge">for</code> loop, and the formatting didn’t break. Then I was able to close it by putting a <code class="highlighter-rouge">&lt;/p&gt;</code> tag below the <code class="highlighter-rouge">endfor</code> tag. I realize I’m new to Liquid and Web template languages in general, but it seems odd to me that an <code class="highlighter-rouge">assign</code> tag would affect the display of HTML. Here is my <code class="highlighter-rouge">_includes/comments.html</code> file with the most recent revisions:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;hr&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+{% if site.data.comments[page.slug] %}
+
+  &lt;p&gt;
+    &lt;h3&gt;
+    {% if site.data.comments[page.slug].size &gt; 1 %}
+      {{ site.data.comments[page.slug] | size }}
+    {% endif %}
+    Comments:
+    &lt;/h3&gt;
+  &lt;/p&gt;
+
+  &lt;hr&gt;
+
+  {% assign comments = site.data.comments[page.slug] | sort %}
+
+  &lt;p&gt;
+    {% for comment in comments %}
+      &lt;br&gt;
+      &lt;legend&gt;&lt;strong&gt;{{ comment[1].name }}&lt;/strong&gt;&lt;/legend&gt;
+      &lt;em&gt;{{ comment[1].date | date: "%B %d, %Y" }}&lt;/em&gt;
+      &lt;p&gt;{{ comment[1].message | markdownify }}&lt;/p&gt;
+      &lt;hr&gt;
+    {% endfor %}
+  &lt;/p&gt;
+{% endif %}
+
+&lt;!-- Comment form --&gt;
+&lt;p&gt;
+  &lt;h3&gt;Post a comment:&lt;/h3&gt;
+  &lt;form method="POST" action="https://api.staticman.net/v2/entry/{{ site.repository }}/{{ site.staticman.branch }}/comments"&gt;
+    &lt;input name="options[redirect]" type="hidden" value="http://idiologos.netlify.com"&gt;
+    &lt;input name="options[slug]" type="hidden" value="{{ page.slug }}"&gt;
+      &lt;div&gt;
+      &lt;legend&gt;Name&lt;/legend&gt;
+      &lt;input name="fields[name]" type="text"&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+      &lt;input name="fields[email]" type="email"&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Website (optional)&lt;/legend&gt;
+      &lt;input name="fields[url]" type="url"&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Message (&lt;a href="https://kramdown.gettalong.org/syntax.html"&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
+      &lt;textarea style="width:100%" name="fields[message]" rows="12"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
+      &lt;button type="submit"&gt;Submit Comment&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/p&gt;
+</code></pre>
+</div>
 </p>
       <hr />
     

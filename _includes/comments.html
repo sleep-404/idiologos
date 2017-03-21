@@ -24,7 +24,15 @@
   <p>
     {% for comment in comments %}
       <br>
-      <legend><strong>{{ comment[1].name }}</strong></legend>
+      <legend>
+        {% if comment[1].url %}
+          <a href="{{ comment[1].url }}">
+        {% endif %}
+        <strong>{{ comment[1].name }}</strong>
+        {% if comment[1].url %}
+          </a>
+        {% endif %}
+      </legend>
       <em>{{ comment[1].date | date: "%B %d, %Y" }}</em>
       <p>{{ comment[1].message | markdownify }}</p>
       <hr>

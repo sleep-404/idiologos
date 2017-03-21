@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-21T14:36:34-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-21T14:50:33-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
 </subtitle><entry><title type="html">Jekyll and Staticman</title><link href="http://localhost:4000/2017/03/20/jekyll-and-staticman.html" rel="alternate" type="text/html" title="Jekyll and Staticman" /><published>2017-03-20T08:51:00-05:00</published><updated>2017-03-20T08:51:00-05:00</updated><id>http://localhost:4000/2017/03/20/jekyll-and-staticman</id><content type="html" xml:base="http://localhost:4000/2017/03/20/jekyll-and-staticman.html">&lt;p&gt;Last week I enabled comments on this site, thanks to &lt;a href=&quot;https://staticman.net/&quot;&gt;Staticman&lt;/a&gt;. After getting comments working, I realized the time stamp was exactly five hours ahead of my time which, accounting for daylight saving time, unsurprisingly works out to Universal Coordinated Time. I recalled that Jekyll had a timezone configuration option, so I just added &lt;strong&gt;timezone: US/Central&lt;/strong&gt; to my &lt;strong&gt;_config.yml&lt;/strong&gt; file, pushed the change to GitHub, and now times on my Netlify site are the same as those on my local system. However, while writing this post, I noticed that it wasn’t being generated. On a hunch, I removed &lt;strong&gt;-0600&lt;/strong&gt; (my offset from UTC) from the date of the post in the post header, and immediately it was generated. So you can either specify your offset from UTC in the post header, or specify your timezone in &lt;strong&gt;_config.yml&lt;/strong&gt;, but don’t do both. Now let’s get back to configuring Staticman:&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
@@ -207,6 +207,8 @@
 &lt;p&gt;
     &lt;h3&gt;
     
+      2
+    
     Comments:
     &lt;/h3&gt;
   &lt;/p&gt;
@@ -216,13 +218,101 @@
 &lt;p&gt;
     
       &lt;br /&gt;
-      &lt;legend&gt;&lt;strong&gt;Michael Rose&lt;/strong&gt;&lt;/legend&gt;
+      &lt;legend&gt;
+        
+        &lt;strong&gt;Michael Rose&lt;/strong&gt;
+        
+      &lt;/legend&gt;
       &lt;em&gt;March 21, 2017&lt;/em&gt;
       &lt;p&gt;&lt;p&gt;Great write-up!&lt;/p&gt;
 
 &lt;p&gt;RE: your issue with &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tags in the message. The &lt;code class=&quot;highlighter-rouge&quot;&gt;markdownify&lt;/code&gt; filter is adding &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt; around the message text. So when you wrapped &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;comment[1].message&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;markdownify&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt; with a paragraph tag you were essentially nesting &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt; inside of another &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;I would just remove it all together and simply do: &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;comment[1].message&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;markdownify&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/p&gt;
+      &lt;hr /&gt;
+    
+      &lt;br /&gt;
+      &lt;legend&gt;
+        
+          &lt;a href=&quot;http://idiologos.netlify.com&quot;&gt;
+        
+        &lt;strong&gt;Matthew Morris&lt;/strong&gt;
+        
+          &lt;/a&gt;
+        
+      &lt;/legend&gt;
+      &lt;em&gt;March 21, 2017&lt;/em&gt;
+      &lt;p&gt;&lt;p&gt;Thanks for the compliment and the tip!&lt;/p&gt;
+
+&lt;p&gt;I’ve been able to simplify my &lt;code class=&quot;highlighter-rouge&quot;&gt;comments.html&lt;/code&gt; file a bit by removing paragraph tags one by one to see what caused the formatting to break. I removed and re-added the paragraph tags around the message text, and it didn’t seem to have any effect other than to squash the message text up against the date when I removed the tags. Through the process of elimination, I discovered that the crucial tag was the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tag above the Liquid &lt;code class=&quot;highlighter-rouge&quot;&gt;assign&lt;/code&gt; tag. If I removed it, the formatting in the posted comments was displayed as raw HTML, except for the portions in Markdown. If I tried to close the tag, a raw &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;/p&amp;gt;&lt;/code&gt; tag would show up after the last posted comment.&lt;/p&gt;
+
+&lt;p&gt;I realized the root of the problem likely had to do with the interplay between the HTML tags and the Liquid tags. I moved the problematic &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tag below the &lt;code class=&quot;highlighter-rouge&quot;&gt;assign&lt;/code&gt; tag, but above the &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt; loop, and the formatting didn’t break. Then I was able to close it by putting a &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;/p&amp;gt;&lt;/code&gt; tag below the &lt;code class=&quot;highlighter-rouge&quot;&gt;endfor&lt;/code&gt; tag. I realize I’m new to Liquid and Web template languages in general, but it seems odd to me that an &lt;code class=&quot;highlighter-rouge&quot;&gt;assign&lt;/code&gt; tag would affect the display of HTML. Here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes/comments.html&lt;/code&gt; file with the most recent revisions:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;hr&amp;gt;
+
+&amp;lt;!-- Static comments --&amp;gt;
+&amp;lt;!-- Partly based on Made Mistakes' comments.html file: --&amp;gt;
+&amp;lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&amp;gt;
+&amp;lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&amp;gt;
+&amp;lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&amp;gt;
+
+{% if site.data.comments[page.slug] %}
+
+  &amp;lt;p&amp;gt;
+    &amp;lt;h3&amp;gt;
+    {% if site.data.comments[page.slug].size &amp;gt; 1 %}
+      {{ site.data.comments[page.slug] | size }}
+    {% endif %}
+    Comments:
+    &amp;lt;/h3&amp;gt;
+  &amp;lt;/p&amp;gt;
+
+  &amp;lt;hr&amp;gt;
+
+  {% assign comments = site.data.comments[page.slug] | sort %}
+
+  &amp;lt;p&amp;gt;
+    {% for comment in comments %}
+      &amp;lt;br&amp;gt;
+      &amp;lt;legend&amp;gt;&amp;lt;strong&amp;gt;{{ comment[1].name }}&amp;lt;/strong&amp;gt;&amp;lt;/legend&amp;gt;
+      &amp;lt;em&amp;gt;{{ comment[1].date | date: &quot;%B %d, %Y&quot; }}&amp;lt;/em&amp;gt;
+      &amp;lt;p&amp;gt;{{ comment[1].message | markdownify }}&amp;lt;/p&amp;gt;
+      &amp;lt;hr&amp;gt;
+    {% endfor %}
+  &amp;lt;/p&amp;gt;
+{% endif %}
+
+&amp;lt;!-- Comment form --&amp;gt;
+&amp;lt;p&amp;gt;
+  &amp;lt;h3&amp;gt;Post a comment:&amp;lt;/h3&amp;gt;
+  &amp;lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/{{ site.repository }}/{{ site.staticman.branch }}/comments&quot;&amp;gt;
+    &amp;lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://idiologos.netlify.com&quot;&amp;gt;
+    &amp;lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;{{ page.slug }}&quot;&amp;gt;
+      &amp;lt;div&amp;gt;
+      &amp;lt;legend&amp;gt;Name&amp;lt;/legend&amp;gt;
+      &amp;lt;input name=&quot;fields[name]&quot; type=&quot;text&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div&amp;gt;
+      &amp;lt;legend&amp;gt;E-mail (optional)&amp;lt;/legend&amp;gt;
+      &amp;lt;input name=&quot;fields[email]&quot; type=&quot;email&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div&amp;gt;
+      &amp;lt;legend&amp;gt;Website (optional)&amp;lt;/legend&amp;gt;
+      &amp;lt;input name=&quot;fields[url]&quot; type=&quot;url&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div&amp;gt;
+      &amp;lt;legend&amp;gt;Message (&amp;lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&amp;gt;Markdown&amp;lt;/a&amp;gt; allowed)&amp;lt;/legend&amp;gt;
+      &amp;lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&amp;gt;&amp;lt;/textarea&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div&amp;gt;
+      &amp;lt;legend&amp;gt;&amp;lt;em&amp;gt;Comments will appear after moderation.&amp;lt;/em&amp;gt;&amp;lt;/legend&amp;gt;
+      &amp;lt;button type=&quot;submit&quot;&amp;gt;Submit Comment&amp;lt;/button&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/form&amp;gt;
+&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/p&gt;
       &lt;hr /&gt;
     
@@ -345,14 +435,22 @@
 &lt;p&gt;
     
       &lt;br /&gt;
-      &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
+      &lt;legend&gt;
+        
+        &lt;strong&gt;Matthew Morris&lt;/strong&gt;
+        
+      &lt;/legend&gt;
       &lt;em&gt;March 18, 2017&lt;/em&gt;
       &lt;p&gt;&lt;p&gt;This is a test.&lt;/p&gt;
 &lt;/p&gt;
       &lt;hr /&gt;
     
       &lt;br /&gt;
-      &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
+      &lt;legend&gt;
+        
+        &lt;strong&gt;Matthew Morris&lt;/strong&gt;
+        
+      &lt;/legend&gt;
       &lt;em&gt;March 18, 2017&lt;/em&gt;
       &lt;p&gt;&lt;h2 id=&quot;markdown-test&quot;&gt;Markdown test&lt;/h2&gt;
 
@@ -369,7 +467,11 @@ fib(1000)
       &lt;hr /&gt;
     
       &lt;br /&gt;
-      &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
+      &lt;legend&gt;
+        
+        &lt;strong&gt;Matthew Morris&lt;/strong&gt;
+        
+      &lt;/legend&gt;
       &lt;em&gt;March 18, 2017&lt;/em&gt;
       &lt;p&gt;&lt;p&gt;Markdown (or kramdown) syntax highlighting test with triple tildes instead of the triple backticks favored by GitHub Flavored Markdown:&lt;/p&gt;
 
