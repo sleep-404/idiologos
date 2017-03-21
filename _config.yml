@@ -18,7 +18,7 @@ email: anglus@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
     Musings about language, computation, and the intersection of the two.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://idiologos.netlify.com/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://idiologos.netlify.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: sumwiht 
 github_username: anglus 
 timezone: US/Central
