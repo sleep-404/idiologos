@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-21T13:30:02-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-21T14:36:34-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
 </subtitle><entry><title type="html">Jekyll and Staticman</title><link href="http://localhost:4000/2017/03/20/jekyll-and-staticman.html" rel="alternate" type="text/html" title="Jekyll and Staticman" /><published>2017-03-20T08:51:00-05:00</published><updated>2017-03-20T08:51:00-05:00</updated><id>http://localhost:4000/2017/03/20/jekyll-and-staticman</id><content type="html" xml:base="http://localhost:4000/2017/03/20/jekyll-and-staticman.html">&lt;p&gt;Last week I enabled comments on this site, thanks to &lt;a href=&quot;https://staticman.net/&quot;&gt;Staticman&lt;/a&gt;. After getting comments working, I realized the time stamp was exactly five hours ahead of my time which, accounting for daylight saving time, unsurprisingly works out to Universal Coordinated Time. I recalled that Jekyll had a timezone configuration option, so I just added &lt;strong&gt;timezone: US/Central&lt;/strong&gt; to my &lt;strong&gt;_config.yml&lt;/strong&gt; file, pushed the change to GitHub, and now times on my Netlify site are the same as those on my local system. However, while writing this post, I noticed that it wasn’t being generated. On a hunch, I removed &lt;strong&gt;-0600&lt;/strong&gt; (my offset from UTC) from the date of the post in the post header, and immediately it was generated. So you can either specify your offset from UTC in the post header, or specify your timezone in &lt;strong&gt;_config.yml&lt;/strong&gt;, but don’t do both. Now let’s get back to configuring Staticman:&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
@@ -232,7 +232,7 @@
 &lt;p&gt;
   &lt;h3&gt;Post a comment:&lt;/h3&gt;
   &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/20/jekyll-and-staticman.html&quot; /&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://idiologos.netlify.com&quot; /&gt;
     &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;jekyll-and-staticman&quot; /&gt;
       &lt;div&gt;
       &lt;legend&gt;Name&lt;/legend&gt;
@@ -392,7 +392,7 @@ fib(1000)
 &lt;p&gt;
   &lt;h3&gt;Post a comment:&lt;/h3&gt;
   &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/17/open-for-comments.html&quot; /&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://idiologos.netlify.com&quot; /&gt;
     &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;open-for-comments&quot; /&gt;
       &lt;div&gt;
       &lt;legend&gt;Name&lt;/legend&gt;
@@ -445,7 +445,7 @@ fib(1000)
 &lt;p&gt;
   &lt;h3&gt;Post a comment:&lt;/h3&gt;
   &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/14/technical-considerations.html&quot; /&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://idiologos.netlify.com&quot; /&gt;
     &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;technical-considerations&quot; /&gt;
       &lt;div&gt;
       &lt;legend&gt;Name&lt;/legend&gt;
@@ -490,7 +490,7 @@ fib(1000)
 &lt;p&gt;
   &lt;h3&gt;Post a comment:&lt;/h3&gt;
   &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/04/incipit-historia.html&quot; /&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://idiologos.netlify.com&quot; /&gt;
     &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;incipit-historia&quot; /&gt;
       &lt;div&gt;
       &lt;legend&gt;Name&lt;/legend&gt;
