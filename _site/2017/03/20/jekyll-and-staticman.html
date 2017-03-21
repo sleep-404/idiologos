@@ -259,9 +259,7 @@
 
 <p>Thank you very much to Eduardo Boucas for writing Staticman, and to Michael Rose for documenting it so well!</p>
 
-<p>
 <hr />
-<p>
 
 <!-- Static comments -->
 <!-- Partly based on Made Mistakes' comments.html file: -->
@@ -269,6 +267,31 @@
 <!-- Also partly based on Eduardo Boucas' reviews.html file -->
 <!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
 
+<p>
+    <h3>
+    
+    Comments:
+    </h3>
+  </p>
+
+<hr />
+
+<p>
+  
+
+  
+    <br />
+    <legend><strong>Michael Rose</strong><legend>
+    <em>March 21, 2017</em>
+    <p><p>Great write-up!</p>
+
+<p>RE: your issue with <code class="highlighter-rouge">&lt;p&gt;</code> tags in the message. The <code class="highlighter-rouge">markdownify</code> filter is adding <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code> around the message text. So when you wrapped <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">comment[1].message</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">markdownify</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> with a paragraph tag you were essentially nesting <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code> inside of another <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code>.</p>
+
+<p>I would just remove it all together and simply do: <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">comment[1].message</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">markdownify</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code></p>
+</p>
+    <hr />
+  
+  <br />
 
 
 <!-- Comment form -->
@@ -285,7 +308,7 @@
     <input name="fields[email]" type="email" />
   </div>
   <div>
-    <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">kramdown</a> markup allowed)</legend>
+    <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">Markdown</a> allowed)</legend>
     <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
   </div>
   
@@ -295,7 +318,7 @@
   </div>
 </form>
 
-</p></p>
+</legend></legend></p>
 
   </div>
 
