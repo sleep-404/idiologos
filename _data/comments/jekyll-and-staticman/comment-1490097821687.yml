@@ -1,0 +1,6 @@
+_id: 6cab4e60-0e2e-11e7-ba33-add746872269
+name: Michael Rose
+email: ''
+message: "Great write-up!\r\n\r\nRE: your issue with `<p>` tags in the message. The `markdownify` filter is adding `<p></p>` around the message text. So when you wrapped `{{ comment[1].message | markdownify }}` with a paragraph tag you were essentially nesting `<p></p>` inside of another `<p></p>`.\r\n\r\nI would just remove it all together and simply do: `{{ comment[1].message | markdownify }}`"
+date: 1490097821
+timestamp: 1490097821681
