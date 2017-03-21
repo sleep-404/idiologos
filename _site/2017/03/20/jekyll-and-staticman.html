@@ -279,52 +279,49 @@
 <hr />
 
 <p>
-  
-
-  
-    <br />
-    <legend><strong>Michael Rose</strong></legend>
-    <em>March 21, 2017</em>
-    <p><p>Great write-up!</p>
+    
+      <br />
+      <legend><strong>Michael Rose</strong></legend>
+      <em>March 21, 2017</em>
+      <p><p>Great write-up!</p>
 
 <p>RE: your issue with <code class="highlighter-rouge">&lt;p&gt;</code> tags in the message. The <code class="highlighter-rouge">markdownify</code> filter is adding <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code> around the message text. So when you wrapped <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">comment[1].message</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">markdownify</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> with a paragraph tag you were essentially nesting <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code> inside of another <code class="highlighter-rouge">&lt;p&gt;&lt;/p&gt;</code>.</p>
 
 <p>I would just remove it all together and simply do: <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">comment[1].message</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">markdownify</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code></p>
 </p>
-    <hr />
-  
-  <br />
-
+      <hr />
+    
+  </p>
 
 <!-- Comment form -->
-<h3>Post a comment:</h3>
-<form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
-  <input name="options[redirect]" type="hidden" value="https://idiologos.netlify.com" />
-  <input name="options[slug]" type="hidden" value="jekyll-and-staticman" />
-  <div>
-    <legend>Name</legend>
-    <input name="fields[name]" type="text" />
-  </div>
-  <div>
-    <legend>E-mail (optional)</legend>
-    <input name="fields[email]" type="email" />
-  </div>
-  <div>
-    <legend>Website (optional)</legend>
-    <input name="fields[url]" type="url" />
-  </div>
-  <div>
-    <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">Markdown</a> allowed)</legend>
-    <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
-  </div>
-  
-  <div>
-    <legend><em>Comments will appear after moderation.</em></legend>
-    <button type="submit">Submit Comment</button>
-  </div>
-</form>
-
+<p>
+  <h3>Post a comment:</h3>
+  <form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
+    <input name="options[redirect]" type="hidden" value="http://localhost:4000/2017/03/20/jekyll-and-staticman.html" />
+    <input name="options[slug]" type="hidden" value="jekyll-and-staticman" />
+      <div>
+      <legend>Name</legend>
+      <input name="fields[name]" type="text" />
+    </div>
+    <div>
+      <legend>E-mail (optional)</legend>
+      <input name="fields[email]" type="email" />
+    </div>
+    <div>
+      <legend>Website (optional)</legend>
+      <input name="fields[url]" type="url" />
+    </div>
+    <div>
+      <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">Markdown</a> allowed)</legend>
+      <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
+    </div>
+    <div>
+      <legend><em>Comments will appear after moderation.</em></legend>
+      <button type="submit">Submit Comment</button>
+    </div>
+  </form>
 </p>
+
 
   </div>
 

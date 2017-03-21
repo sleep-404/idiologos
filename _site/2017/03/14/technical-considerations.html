@@ -91,32 +91,33 @@
 <!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
 
 <!-- Comment form -->
-<h3>Post a comment:</h3>
-<form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
-  <input name="options[redirect]" type="hidden" value="https://idiologos.netlify.com" />
-  <input name="options[slug]" type="hidden" value="technical-considerations" />
-  <div>
-    <legend>Name</legend>
-    <input name="fields[name]" type="text" />
-  </div>
-  <div>
-    <legend>E-mail (optional)</legend>
-    <input name="fields[email]" type="email" />
-  </div>
-  <div>
-    <legend>Website (optional)</legend>
-    <input name="fields[url]" type="url" />
-  </div>
-  <div>
-    <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">Markdown</a> allowed)</legend>
-    <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
-  </div>
-  
-  <div>
-    <legend><em>Comments will appear after moderation.</em></legend>
-    <button type="submit">Submit Comment</button>
-  </div>
-</form>
+<p>
+  <h3>Post a comment:</h3>
+  <form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
+    <input name="options[redirect]" type="hidden" value="http://localhost:4000/2017/03/14/technical-considerations.html" />
+    <input name="options[slug]" type="hidden" value="technical-considerations" />
+      <div>
+      <legend>Name</legend>
+      <input name="fields[name]" type="text" />
+    </div>
+    <div>
+      <legend>E-mail (optional)</legend>
+      <input name="fields[email]" type="email" />
+    </div>
+    <div>
+      <legend>Website (optional)</legend>
+      <input name="fields[url]" type="url" />
+    </div>
+    <div>
+      <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">Markdown</a> allowed)</legend>
+      <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
+    </div>
+    <div>
+      <legend><em>Comments will appear after moderation.</em></legend>
+      <button type="submit">Submit Comment</button>
+    </div>
+  </form>
+</p>
 
 
   </div>

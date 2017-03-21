@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-21T12:59:07-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-21T13:30:02-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
 </subtitle><entry><title type="html">Jekyll and Staticman</title><link href="http://localhost:4000/2017/03/20/jekyll-and-staticman.html" rel="alternate" type="text/html" title="Jekyll and Staticman" /><published>2017-03-20T08:51:00-05:00</published><updated>2017-03-20T08:51:00-05:00</updated><id>http://localhost:4000/2017/03/20/jekyll-and-staticman</id><content type="html" xml:base="http://localhost:4000/2017/03/20/jekyll-and-staticman.html">&lt;p&gt;Last week I enabled comments on this site, thanks to &lt;a href=&quot;https://staticman.net/&quot;&gt;Staticman&lt;/a&gt;. After getting comments working, I realized the time stamp was exactly five hours ahead of my time which, accounting for daylight saving time, unsurprisingly works out to Universal Coordinated Time. I recalled that Jekyll had a timezone configuration option, so I just added &lt;strong&gt;timezone: US/Central&lt;/strong&gt; to my &lt;strong&gt;_config.yml&lt;/strong&gt; file, pushed the change to GitHub, and now times on my Netlify site are the same as those on my local system. However, while writing this post, I noticed that it wasn’t being generated. On a hunch, I removed &lt;strong&gt;-0600&lt;/strong&gt; (my offset from UTC) from the date of the post in the post header, and immediately it was generated. So you can either specify your offset from UTC in the post header, or specify your timezone in &lt;strong&gt;_config.yml&lt;/strong&gt;, but don’t do both. Now let’s get back to configuring Staticman:&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
@@ -214,51 +214,47 @@
 &lt;hr /&gt;
 
 &lt;p&gt;
-  
-
-  
-    &lt;br /&gt;
-    &lt;legend&gt;&lt;strong&gt;Michael Rose&lt;/strong&gt;&lt;/legend&gt;
-    &lt;em&gt;March 21, 2017&lt;/em&gt;
-    &lt;p&gt;&lt;p&gt;Great write-up!&lt;/p&gt;
+    
+      &lt;br /&gt;
+      &lt;legend&gt;&lt;strong&gt;Michael Rose&lt;/strong&gt;&lt;/legend&gt;
+      &lt;em&gt;March 21, 2017&lt;/em&gt;
+      &lt;p&gt;&lt;p&gt;Great write-up!&lt;/p&gt;
 
 &lt;p&gt;RE: your issue with &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; tags in the message. The &lt;code class=&quot;highlighter-rouge&quot;&gt;markdownify&lt;/code&gt; filter is adding &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt; around the message text. So when you wrapped &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;comment[1].message&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;markdownify&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt; with a paragraph tag you were essentially nesting &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt; inside of another &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;I would just remove it all together and simply do: &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;comment[1].message&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;markdownify&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;
 &lt;/p&gt;
-    &lt;hr /&gt;
-  
-  &lt;br /&gt;
-
+      &lt;hr /&gt;
+    
+  &lt;/p&gt;
 
 &lt;!-- Comment form --&gt;
-&lt;h3&gt;Post a comment:&lt;/h3&gt;
-&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
-  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;jekyll-and-staticman&quot; /&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Name&lt;/legend&gt;
-    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Website (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
-    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
-    &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/form&gt;
-
+&lt;p&gt;
+  &lt;h3&gt;Post a comment:&lt;/h3&gt;
+  &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/20/jekyll-and-staticman.html&quot; /&gt;
+    &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;jekyll-and-staticman&quot; /&gt;
+      &lt;div&gt;
+      &lt;legend&gt;Name&lt;/legend&gt;
+      &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Website (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
+      &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
+      &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
 &lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><category term="markdown" /><category term="kramdown" /><summary type="html">Last week I enabled comments on this site, thanks to Staticman. After getting comments working, I realized the time stamp was exactly five hours ahead of my time which, accounting for daylight saving time, unsurprisingly works out to Universal Coordinated Time. I recalled that Jekyll had a timezone configuration option, so I just added timezone: US/Central to my _config.yml file, pushed the change to GitHub, and now times on my Netlify site are the same as those on my local system. However, while writing this post, I noticed that it wasn’t being generated. On a hunch, I removed -0600 (my offset from UTC) from the date of the post in the post header, and immediately it was generated. So you can either specify your offset from UTC in the post header, or specify your timezone in _config.yml, but don’t do both. Now let’s get back to configuring Staticman:</summary></entry><entry><title type="html">Open for Comments</title><link href="http://localhost:4000/2017/03/17/open-for-comments.html" rel="alternate" type="text/html" title="Open for Comments" /><published>2017-03-17T11:59:00-05:00</published><updated>2017-03-17T11:59:00-05:00</updated><id>http://localhost:4000/2017/03/17/open-for-comments</id><content type="html" xml:base="http://localhost:4000/2017/03/17/open-for-comments.html">&lt;p&gt;Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.&lt;/p&gt;
 
 &lt;p&gt;I have given some consideration to the comments problem and come to a decision. The options I’ve given consideration to include Disqus, Muut, HTML Comment Box, Remarkbox, GoTell, Isso, Pelican Comments, and Staticman.&lt;/p&gt;
@@ -347,20 +343,18 @@
 &lt;hr /&gt;
 
 &lt;p&gt;
-  
-
-  
-    &lt;br /&gt;
-    &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
-    &lt;em&gt;March 18, 2017&lt;/em&gt;
-    &lt;p&gt;&lt;p&gt;This is a test.&lt;/p&gt;
+    
+      &lt;br /&gt;
+      &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
+      &lt;em&gt;March 18, 2017&lt;/em&gt;
+      &lt;p&gt;&lt;p&gt;This is a test.&lt;/p&gt;
 &lt;/p&gt;
-    &lt;hr /&gt;
-  
-    &lt;br /&gt;
-    &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
-    &lt;em&gt;March 18, 2017&lt;/em&gt;
-    &lt;p&gt;&lt;h2 id=&quot;markdown-test&quot;&gt;Markdown test&lt;/h2&gt;
+      &lt;hr /&gt;
+    
+      &lt;br /&gt;
+      &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
+      &lt;em&gt;March 18, 2017&lt;/em&gt;
+      &lt;p&gt;&lt;h2 id=&quot;markdown-test&quot;&gt;Markdown test&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def fib(n):
     a, b = 0, 1
@@ -372,12 +366,12 @@
 fib(1000)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/p&gt;
-    &lt;hr /&gt;
-  
-    &lt;br /&gt;
-    &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
-    &lt;em&gt;March 18, 2017&lt;/em&gt;
-    &lt;p&gt;&lt;p&gt;Markdown (or kramdown) syntax highlighting test with triple tildes instead of the triple backticks favored by GitHub Flavored Markdown:&lt;/p&gt;
+      &lt;hr /&gt;
+    
+      &lt;br /&gt;
+      &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;/legend&gt;
+      &lt;em&gt;March 18, 2017&lt;/em&gt;
+      &lt;p&gt;&lt;p&gt;Markdown (or kramdown) syntax highlighting test with triple tildes instead of the triple backticks favored by GitHub Flavored Markdown:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
@@ -390,39 +384,37 @@ fib(1000)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/p&gt;
-    &lt;hr /&gt;
-  
-  &lt;br /&gt;
-
+      &lt;hr /&gt;
+    
+  &lt;/p&gt;
 
 &lt;!-- Comment form --&gt;
-&lt;h3&gt;Post a comment:&lt;/h3&gt;
-&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
-  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;open-for-comments&quot; /&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Name&lt;/legend&gt;
-    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Website (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
-    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
-    &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/form&gt;
-
+&lt;p&gt;
+  &lt;h3&gt;Post a comment:&lt;/h3&gt;
+  &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/17/open-for-comments.html&quot; /&gt;
+    &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;open-for-comments&quot; /&gt;
+      &lt;div&gt;
+      &lt;legend&gt;Name&lt;/legend&gt;
+      &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Website (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
+      &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
+      &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
 &lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><summary type="html">Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</summary></entry><entry><title type="html">Technical Considerations</title><link href="http://localhost:4000/2017/03/14/technical-considerations.html" rel="alternate" type="text/html" title="Technical Considerations" /><published>2017-03-14T15:40:00-05:00</published><updated>2017-03-14T15:40:00-05:00</updated><id>http://localhost:4000/2017/03/14/technical-considerations</id><content type="html" xml:base="http://localhost:4000/2017/03/14/technical-considerations.html">&lt;p&gt;Happy Pi Day!&lt;/p&gt;
 
 &lt;p&gt;I’ve been quiet lately for a few reasons, the most significant of which is that I’ve been focusing on completing the online course, &lt;a href=&quot;https://www.futurelearn.com/courses/functional-programming-erlang&quot;&gt;“Functional Programming in Erlang”&lt;/a&gt;, taught by Simon Thompson of the University of Kent, and hosted by FutureLearn. I may discuss that experience in a future post, but in this post I’d like to focus on my general plans for this web log.&lt;/p&gt;
@@ -450,32 +442,33 @@ fib(1000)
 &lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
 
 &lt;!-- Comment form --&gt;
-&lt;h3&gt;Post a comment:&lt;/h3&gt;
-&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
-  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;technical-considerations&quot; /&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Name&lt;/legend&gt;
-    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Website (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
-    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
-    &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/form&gt;</content><author><name></name></author><category term="jekyll" /><category term="pelican" /><category term="obelisk" /><category term="python" /><category term="ruby" /><category term="elixir" /><category term="erlang" /><category term="comments" /><summary type="html">Happy Pi Day!</summary></entry><entry><title type="html">Incipit Historia</title><link href="http://localhost:4000/2017/03/04/incipit-historia.html" rel="alternate" type="text/html" title="Incipit Historia" /><published>2017-03-04T10:49:39-06:00</published><updated>2017-03-04T10:49:39-06:00</updated><id>http://localhost:4000/2017/03/04/incipit-historia</id><content type="html" xml:base="http://localhost:4000/2017/03/04/incipit-historia.html">&lt;p&gt;As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.&lt;/p&gt;
+&lt;p&gt;
+  &lt;h3&gt;Post a comment:&lt;/h3&gt;
+  &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/14/technical-considerations.html&quot; /&gt;
+    &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;technical-considerations&quot; /&gt;
+      &lt;div&gt;
+      &lt;legend&gt;Name&lt;/legend&gt;
+      &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Website (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
+      &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
+      &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="pelican" /><category term="obelisk" /><category term="python" /><category term="ruby" /><category term="elixir" /><category term="erlang" /><category term="comments" /><summary type="html">Happy Pi Day!</summary></entry><entry><title type="html">Incipit Historia</title><link href="http://localhost:4000/2017/03/04/incipit-historia.html" rel="alternate" type="text/html" title="Incipit Historia" /><published>2017-03-04T10:49:39-06:00</published><updated>2017-03-04T10:49:39-06:00</updated><id>http://localhost:4000/2017/03/04/incipit-historia</id><content type="html" xml:base="http://localhost:4000/2017/03/04/incipit-historia.html">&lt;p&gt;As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.&lt;/p&gt;
 
 &lt;p&gt;When I first learned about the Internet and the World Wide Web in the mid-1990s, I imagined them as a vast library. When I first logged on, I found it thrilling to visit web pages in other countries and realize that the content I was seeing was hosted on a computer far away, yet arrived on my screen almost instantly–or about as instantly as a 14.4 Kbps modem could manage. At that time there wasn’t much content, even compared with my local library. This was before Wikipedia, YouTube, Flickr, SoundCloud, and so on.&lt;/p&gt;
 
@@ -494,29 +487,30 @@ fib(1000)
 &lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
 
 &lt;!-- Comment form --&gt;
-&lt;h3&gt;Post a comment:&lt;/h3&gt;
-&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
-  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
-  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;incipit-historia&quot; /&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Name&lt;/legend&gt;
-    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Website (optional)&lt;/legend&gt;
-    &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
-    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
-  &lt;/div&gt;
-  
-  &lt;div&gt;
-    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
-    &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/form&gt;</content><author><name></name></author><category term="Internet" /><category term="books" /><category term="knowledge" /><summary type="html">As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.</summary></entry></feed>
+&lt;p&gt;
+  &lt;h3&gt;Post a comment:&lt;/h3&gt;
+  &lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+    &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;http://localhost:4000/2017/03/04/incipit-historia.html&quot; /&gt;
+    &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;incipit-historia&quot; /&gt;
+      &lt;div&gt;
+      &lt;legend&gt;Name&lt;/legend&gt;
+      &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Website (optional)&lt;/legend&gt;
+      &lt;input name=&quot;fields[url]&quot; type=&quot;url&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;Markdown&lt;/a&gt; allowed)&lt;/legend&gt;
+      &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
+      &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/p&gt;</content><author><name></name></author><category term="Internet" /><category term="books" /><category term="knowledge" /><summary type="html">As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.</summary></entry></feed>
