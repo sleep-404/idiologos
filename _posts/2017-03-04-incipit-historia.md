@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Incipit Historia"
-date: 2017-03-04 16:49:39 -0600
+date: 2017-03-04 16:49:39
 tags: Internet books knowledge  
 ---
 As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the "See also:" section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Open for Comments"
-date: 2017-03-17 16:59:00 -0600
+date: 2017-03-17 16:59:00
 tags: jekyll staticman comments 
 ---
 Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify's infrastructure has its own idea of what time it is.

@@ -1,5 +1,236 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-18T03:36:11-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
-</subtitle><entry><title type="html">Open for Comments</title><link href="http://localhost:4000/2017/03/17/open-for-comments.html" rel="alternate" type="text/html" title="Open for Comments" /><published>2017-03-17T17:59:00-05:00</published><updated>2017-03-17T17:59:00-05:00</updated><id>http://localhost:4000/2017/03/17/open-for-comments</id><content type="html" xml:base="http://localhost:4000/2017/03/17/open-for-comments.html">&lt;p&gt;Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-20T22:06:16-05:00</updated><id>http://localhost:4000/</id><title type="html">Idiologos</title><subtitle>Musings about language, computation, and the intersection of the two.
+</subtitle><entry><title type="html">Jekyll and Staticman</title><link href="http://localhost:4000/2017/03/20/jekyll-and-staticman.html" rel="alternate" type="text/html" title="Jekyll and Staticman" /><published>2017-03-20T08:51:00-05:00</published><updated>2017-03-20T08:51:00-05:00</updated><id>http://localhost:4000/2017/03/20/jekyll-and-staticman</id><content type="html" xml:base="http://localhost:4000/2017/03/20/jekyll-and-staticman.html">&lt;p&gt;Last week I enabled comments on this site, thanks to &lt;a href=&quot;https://staticman.net/&quot;&gt;Staticman&lt;/a&gt;. After getting comments working, I realized the time stamp was exactly five hours ahead of my time which, accounting for daylight saving time, unsurprisingly works out to Universal Coordinated Time. I recalled that Jekyll had a timezone configuration option, so I just added &lt;strong&gt;timezone: US/Central&lt;/strong&gt; to my &lt;strong&gt;_config.yml&lt;/strong&gt; file, pushed the change to GitHub, and now times on my Netlify site are the same as those on my local system. However, while writing this post, I noticed that it wasn’t being generated. On a hunch, I removed &lt;strong&gt;-0600&lt;/strong&gt; (my offset from UTC) from the date of the post in the post header, and immediately it was generated. So you can either specify your offset from UTC in the post header, or specify your timezone in &lt;strong&gt;_config.yml&lt;/strong&gt;, but don’t do both. Now let’s get back to configuring Staticman:&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;While configuring Staticman, I used several resources. A basic overview may be found on the Staticman site &lt;a href=&quot;https://staticman.net/docs/&quot;&gt;here&lt;/a&gt;. There is an example site that uses Staticman &lt;a href=&quot;http://popcorn.staticman.net/&quot;&gt;here&lt;/a&gt; (GitHub repository &lt;a href=&quot;https://github.com/eduardoboucas/popcorn&quot;&gt;here&lt;/a&gt;). Also extremely helpful were two articles on Michael Rose’s Made Mistakes blog &lt;a href=&quot;https://mademistakes.com/articles/jekyll-static-comments/&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://mademistakes.com/articles/improving-jekyll-static-comments/&quot;&gt;here&lt;/a&gt;, as well as the Made Mistakes &lt;a href=&quot;https://github.com/mmistakes/made-mistakes-jekyll&quot;&gt;GitHub repository&lt;/a&gt; and the &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/configuration/&quot;&gt;configuration guide&lt;/a&gt; for the Minimal Mistakes Jekyll theme (also created by Michael Rose, of course). I decided to keep things fairly simple for the first iteration of my comments implementation. I used some &lt;a href=&quot;http://yaml.org/&quot;&gt;YAML&lt;/a&gt; for Jekyll configuration files, as well as HTML and &lt;a href=&quot;https://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt; for the comment form and comments &lt;a href=&quot;https://jekyllrb.com/docs/templates/&quot;&gt;templates&lt;/a&gt;, but didn’t bother to do anything fancy with JavaScript or CSS. I’m considering changing the blog’s theme from the default Jekyll Minima theme to something else, and I probably won’t mess with JavaScript or CSS until after I’ve done that.&lt;/p&gt;
+
+&lt;h2 id=&quot;_configyml&quot;&gt;_config.yml&lt;/h2&gt;
+
+&lt;p&gt;I added the following lines to my &lt;strong&gt;_config.yml&lt;/strong&gt; file, following the example of Made Mistakes:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Name of repository, for use with Staticman&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;repository&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;anglus/idiologos&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Staticman comments (see staticman.yml for configuration).&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;staticman&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;master&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Here &lt;strong&gt;anglus&lt;/strong&gt; is my GitHub account name, and &lt;strong&gt;idiologos&lt;/strong&gt; is the repository name. New comments will be merged with the &lt;strong&gt;master&lt;/strong&gt; branch.&lt;/p&gt;
+
+&lt;h2 id=&quot;staticmanyml&quot;&gt;staticman.yml&lt;/h2&gt;
+
+&lt;p&gt;Next, I added a file named &lt;strong&gt;staticman.yml&lt;/strong&gt; to my Jekyll site’s root directory:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Name of the property. You can have multiple properties with completely&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# different config blocks for different sections of your site.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# For example, you can have one property to handle comment submission and&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# another one to handle posts.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# (*) REQUIRED&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Names of the fields the form is allowed to submit. If a field that is&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# not here is part of the request, an error will be thrown.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;allowedFields&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;name&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;email&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;url&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;message&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# (*) REQUIRED&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Name of the branch being used. Must match the one sent in the URL of the&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# request.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;master&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Text to use as the commit message or pull request title. Accepts placeholders.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;commitMessage&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;comment(s).&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# (*) REQUIRED&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Destination path (filename) for the data files. Accepts placeholders.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;comment-{@timestamp}&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# The format of the generated data files. Accepted values are &quot;json&quot;, &quot;yaml&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# or &quot;frontmatter&quot;&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;yaml&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# List of fields to be populated automatically by Staticman and included in&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# the data file. Keys are the name of the field. The value can be an object&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# with a `type` property, which configures the generated field, or any value&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# to be used directly (e.g. a string, number or array)&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;generatedFields&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;date&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;timestamp-seconds&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Whether entries need to be appproved before they are published to the main&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# branch. If set to `true`, a pull request will be created for your approval.&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Otherwise, entries will be published to the main branch automatically.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;moderation&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Name of the site. Used in notification emails.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;idiologos.netlify.com&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Notification settings. When enabled, users can choose to receive notifications&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# via email when someone adds a reply or a new comment. This requires an account&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# with Mailgun, which you can get for free at http://mailgun.com.&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#notifications:&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Enable notifications&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#enabled: true&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# (!) ENCRYPTED&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Mailgun API key&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#apiKey: &quot;&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# (!) ENCRYPTED&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Mailgun domain (encrypted)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#domain: &quot;&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# (*) REQUIRED&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Destination path (directory) for the data files. Accepts placeholders.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;_data/comments/{options.slug}&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Names of required files. If any of these isn't in the request or is empty,&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# an error will be thrown.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;requiredFields&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;name&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;message&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# List of transformations to apply to any of the fields supplied. Keys are&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# the name of the field and values are possible transformation types.&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;transforms&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;md5&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I used the Staticman sample config file &lt;a href=&quot;https://github.com/eduardoboucas/staticman/blob/master/staticman.sample.yml&quot;&gt;here&lt;/a&gt;, but made some modifications using the Made Mistakes config file &lt;a href=&quot;https://github.com/mmistakes/made-mistakes-jekyll/blob/master/staticman.yml&quot;&gt;here&lt;/a&gt;. I don’t make use of all of the configuration options in the above file yet. Note that moderation is set to “true”, which means that comments will not be posted automatically; instead I must approve a GitHub pull request in order to merge new comments into the site. Also note that your e-mail address, if you choose to enter it, is automatically hashed using MD5. I don’t make use of it yet, but it could be useful for Gravatar or some such, or for e-mail notifications if I implement them in the future.&lt;/p&gt;
+
+&lt;h2 id=&quot;_includescommentshtml&quot;&gt;_includes/comments.html&lt;/h2&gt;
+
+&lt;p&gt;I took a look at the way Made Mistakes implemented the commenting templates, as well as the Popcorn sample site. In the end, I decided the simplest way to implement the new comment form and the posted comments template was as a single template. I used the sample template in the Staticman documentation (“Step 3. Hook up your forms” &lt;a href=&quot;https://staticman.net/docs/&quot;&gt;here&lt;/a&gt;) as a base, and changed things around according to my taste. This is what I have currently for my comment form (HTML highlighted):&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Comment form --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;Post a comment:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;POST&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://api.staticman.net/v2/entry/{{ site.repository }}/{{ site.staticman.branch }}/comments&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;options[redirect]&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hidden&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://idiologos.netlify.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;options[slug]&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hidden&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ page.slug }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;legend&amp;gt;&lt;/span&gt;Name&lt;span class=&quot;nt&quot;&gt;&amp;lt;/legend&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fields[name]&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;legend&amp;gt;&lt;/span&gt;E-mail (optional)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/legend&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fields[email]&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;legend&amp;gt;&lt;/span&gt;Message (&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://kramdown.gettalong.org/syntax.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;kramdown&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt; markup allowed)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/legend&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;textarea&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width:100%&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fields[message]&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rows=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;12&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/textarea&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;legend&amp;gt;&amp;lt;em&amp;gt;&lt;/span&gt;Comments will appear after moderation.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/em&amp;gt;&amp;lt;/legend&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Submit Comment&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This just a basic HTML form, with three Liquid objects: &lt;strong&gt;site.repository&lt;/strong&gt; (“anglus/idiologos”), &lt;strong&gt;site.staticman.branch&lt;/strong&gt; (“master”), and &lt;strong&gt;page.slug&lt;/strong&gt; (the file name of the blog post, e.g. “jekyll-and-staticman” for this post). The important point here is that clicking the submit button sends an HTML POST command to &lt;strong&gt;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&lt;/strong&gt;. In order to make the comment form show up on my posts, I added the following Liquid tag at the bottom of each post:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;At some point I should probably add a post template that includes the comments template, so it’s automatically included in each post. But I think I’ll wait to do that until I understand better how Jekyll themes are organized.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-configuration&quot;&gt;GitHub configuration&lt;/h2&gt;
+
+&lt;p&gt;Configuring my GitHub repository was very straightforward following the &lt;a href=&quot;https://staticman.net/docs/&quot;&gt;documentation&lt;/a&gt; on the Staticman site. The relevant portion of the documentation here is “Step 1. Add Staticman to your repository”. I logged in to my GitHub account, navigated to &lt;strong&gt;Settings –&amp;gt; Collaborators&lt;/strong&gt; under the repository for this site, and added the GitHub user &lt;strong&gt;staticmanapp&lt;/strong&gt; as a collaborator. That done, I entered &lt;strong&gt;https://api.staticman.net/v2/connect/anglus/idiologos&lt;/strong&gt; into my browser and saw a page that read simply “OK!”.&lt;/p&gt;
+
+&lt;h2 id=&quot;deployment-and-testing&quot;&gt;Deployment and testing&lt;/h2&gt;
+
+&lt;p&gt;With Staticman configured to handle comments, it was time to test. I pushed my changes to GitHub, waited for the comment form to appear on Netlify, and then posted a test comment. The comment appeared almost immediately as a pull request to my GitHub repository–the first pull request I’ve ever received, even if it was from a bot. I merged the request, and it appeared in a new &lt;strong&gt;_data/comments/…&lt;/strong&gt; directory in my repository. Staticman also sent me an e-mail notification, but I didn’t notice that until after I’d merged the comment.&lt;/p&gt;
+
+&lt;h2 id=&quot;_includescommentshtml-again&quot;&gt;_includes/comments.html (again)&lt;/h2&gt;
+
+&lt;p&gt;Now that I had a Staticman comment, I needed to integrate it into my post. As I had already included the &lt;strong&gt;_includes/comments.html&lt;/strong&gt; file in my post, I decided to add the posted comments template to the same file. At first I placed the posted comments after the comment form, but as I have my comments sorted in chronological order, I felt it was more logical to place the posted comments first, and the comment form after the last posted comment. Here is the posted comments template (Liquid highlighted):&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&amp;lt;p&amp;gt;
+&amp;lt;hr&amp;gt;
+&amp;lt;p&amp;gt;
+
+&amp;lt;!-- Static comments --&amp;gt;
+&amp;lt;!-- Partly based on Made Mistakes' comments.html file: --&amp;gt;
+&amp;lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&amp;gt;
+&amp;lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&amp;gt;
+&amp;lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&amp;gt;
+
+&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;slug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+
+  &amp;lt;h3&amp;gt;
+    &lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;slug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;slug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+    Comments:
+  &amp;lt;/h3&amp;gt;
+
+  &amp;lt;p&amp;gt;
+  &amp;lt;hr&amp;gt;
+
+  &lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;slug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+
+  &lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;comment&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;in&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;comments&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+    &amp;lt;br&amp;gt;
+    &amp;lt;legend&amp;gt;&amp;lt;strong&amp;gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;&amp;lt;/strong&amp;gt;&amp;lt;legend&amp;gt;
+    &amp;lt;em&amp;gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;%B %d, %Y&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;&amp;lt;/em&amp;gt;
+    &amp;lt;p&amp;gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;comment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;markdownify&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+    &amp;lt;hr&amp;gt;
+  &lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endfor&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;
+  &amp;lt;p&amp;gt;
+&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kr&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The portion in the &lt;strong&gt;&amp;lt;h3&amp;gt;&lt;/strong&gt; tags displays “Comments:” if there is at least one comment, and “X Comments:” where X is the number of posted comments if there are two or more comments. The Liquid &lt;strong&gt;assign&lt;/strong&gt; tag includes a sort filter. As the comments are stored in the form “comment-1234567890123.yml”, where 1234567890123 is the time stamp, they will be sorted in chronological order, oldest first, newest last. The Liquid &lt;strong&gt;for&lt;/strong&gt; loop takes (some of) the fields in each comment, and outputs them as HTML: name, date (in the form “March 20, 2017”), and the text of the comment. The comment text is passed through a filter which converts any Markdown syntax to HTML tags.&lt;/p&gt;
+
+&lt;p&gt;You might think that Jekyll, being developed by one of the founders of GitHub, and being the recommended static site generator for GitHub pages, would use &lt;a href=&quot;https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown&quot;&gt;GitHub Flavored Markdown&lt;/a&gt;. If you thought that, you would be wrong. Instead, Jekyll uses &lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;kramdown&lt;/a&gt;. I am not well-versed in all of the differences between GFM syntax and kramdown syntax. However, one important difference between the two is in the syntax of fenced code blocks. Plain vanilla Markdown uses indentation to mark code blocks. GFM and kramdown both also have fenced code blocks that allow you to specify the language the code block is written in, which allows for proper syntax highlighting of the code. GFM uses &lt;a href=&quot;https://help.github.com/articles/creating-and-highlighting-code-blocks/#syntax-highlighting&quot;&gt;triple backticks&lt;/a&gt; (`) to begin and end a fenced code block, whereas kramdown uses &lt;a href=&quot;https://kramdown.gettalong.org/syntax.html#fenced-code-blocks&quot;&gt;triple tildes&lt;/a&gt; (~). The language may be specified on the same line as the opening backticks or tildes.&lt;/p&gt;
+
+&lt;p&gt;One strange thing I noticed was that my comments section appears properly formatted if I only use opening &lt;strong&gt;&amp;lt;p&amp;gt;&lt;/strong&gt; tags, but if I try to close my paragraphs with &lt;strong&gt;&amp;lt;/p&amp;gt;&lt;/strong&gt; tags, then it breaks the formatting of my comments. I’m not sure exactly where the problem lies, but I suspect it has to do with the way kramdown converts the comment text to HTML.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;For now my comment form is missing some behavior that could be implemented with JavaScript. Also, the styling could be improved with some CSS. As I have mentioned above, I will probably work on that after I have switched to a different theme, if the theme is still lacking. I don’t know how many Jekyll themes work with Staticman, or with plain vanilla HTML forms like I’ve used for Staticman. Obviously “Minimal Mistakes” does, but I will probably use another theme, and the other themes I’ve seen assume that if anything is being used for comments, it’s Disqus. Another problem is what to do when a comment is submitted. For now the behavior is to dump you back on the home page. I believe I should be able to change that with a small modification to &lt;strong&gt;_includes/comments.html&lt;/strong&gt;. Also as I mentioned above, comments are moderated. If comment moderation becomes too much of a barrier, or too much of a burden, I will look at integrating reCAPTCHA or some other solution for filtering spam, and then set moderation to “false”.&lt;/p&gt;
+
+&lt;p&gt;Thank you very much to Eduardo Boucas for writing Staticman, and to Michael Rose for documenting it so well!&lt;/p&gt;
+
+&lt;p&gt;
+&lt;hr /&gt;
+&lt;p&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+
+
+&lt;!-- Comment form --&gt;
+&lt;h3&gt;Post a comment:&lt;/h3&gt;
+&lt;form method=&quot;POST&quot; action=&quot;https://api.staticman.net/v2/entry/anglus/idiologos/master/comments&quot;&gt;
+  &lt;input name=&quot;options[redirect]&quot; type=&quot;hidden&quot; value=&quot;https://idiologos.netlify.com&quot; /&gt;
+  &lt;input name=&quot;options[slug]&quot; type=&quot;hidden&quot; value=&quot;jekyll-and-staticman&quot; /&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Name&lt;/legend&gt;
+    &lt;input name=&quot;fields[name]&quot; type=&quot;text&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;E-mail (optional)&lt;/legend&gt;
+    &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;kramdown&lt;/a&gt; markup allowed)&lt;/legend&gt;
+    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
+    &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;/p&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><category term="markdown" /><category term="kramdown" /><summary type="html">Last week I enabled comments on this site, thanks to Staticman. After getting comments working, I realized the time stamp was exactly five hours ahead of my time which, accounting for daylight saving time, unsurprisingly works out to Universal Coordinated Time. I recalled that Jekyll had a timezone configuration option, so I just added timezone: US/Central to my _config.yml file, pushed the change to GitHub, and now times on my Netlify site are the same as those on my local system. However, while writing this post, I noticed that it wasn’t being generated. On a hunch, I removed -0600 (my offset from UTC) from the date of the post in the post header, and immediately it was generated. So you can either specify your offset from UTC in the post header, or specify your timezone in _config.yml, but don’t do both. Now let’s get back to configuring Staticman:</summary></entry><entry><title type="html">Open for Comments</title><link href="http://localhost:4000/2017/03/17/open-for-comments.html" rel="alternate" type="text/html" title="Open for Comments" /><published>2017-03-17T11:59:00-05:00</published><updated>2017-03-17T11:59:00-05:00</updated><id>http://localhost:4000/2017/03/17/open-for-comments</id><content type="html" xml:base="http://localhost:4000/2017/03/17/open-for-comments.html">&lt;p&gt;Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.&lt;/p&gt;
 
 &lt;p&gt;I have given some consideration to the comments problem and come to a decision. The options I’ve given consideration to include Disqus, Muut, HTML Comment Box, Remarkbox, GoTell, Isso, Pelican Comments, and Staticman.&lt;/p&gt;
 
@@ -69,7 +300,73 @@
 
 &lt;p&gt;
 &lt;hr /&gt;
-&lt;p /&gt;
+&lt;p&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+
+
+  &lt;h3&gt;
+    
+      3
+    
+    Comments:
+  &lt;/h3&gt;
+
+  &lt;p&gt;
+  &lt;hr /&gt;
+
+  
+
+  
+    &lt;br /&gt;
+    &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;legend&gt;
+    &lt;em&gt;March 18, 2017&lt;/em&gt;
+    &lt;p&gt;&lt;p&gt;This is a test.&lt;/p&gt;
+
+    &lt;hr /&gt;
+  
+    &lt;br /&gt;
+    &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;legend&gt;
+    &lt;em&gt;March 18, 2017&lt;/em&gt;
+    &lt;p&gt;&lt;h2 id=&quot;markdown-test&quot;&gt;Markdown test&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def fib(n):
+    a, b = 0, 1
+    while a &amp;lt; n:
+        print(a, end=' ')
+        a, b = b, a+b
+    print()
+
+fib(1000)
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;hr /&gt;
+  
+    &lt;br /&gt;
+    &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;legend&gt;
+    &lt;em&gt;March 18, 2017&lt;/em&gt;
+    &lt;p&gt;&lt;p&gt;Markdown (or kramdown) syntax highlighting test with triple tildes instead of the triple backticks favored by GitHub Flavored Markdown:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+    &lt;hr /&gt;
+  
+  &lt;p&gt;
+
 
 &lt;!-- Comment form --&gt;
 &lt;h3&gt;Post a comment:&lt;/h3&gt;
@@ -85,61 +382,17 @@
     &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
   &lt;/div&gt;
   &lt;div&gt;
-    &lt;legend&gt;Comment&lt;/legend&gt;
-    &lt;textarea style=&quot;width:70%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;kramdown&lt;/a&gt; markup allowed)&lt;/legend&gt;
+    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
   &lt;/div&gt;
   
   &lt;div&gt;
+    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
     &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;
 
-&lt;!-- Static comments --&gt;
-&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
-&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
-&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
-&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
-
-
-&lt;p&gt;
-&lt;hr /&gt;
-&lt;p&gt;
-	&lt;h3&gt;
-      
-        2
-      
-      Comments
-    &lt;/h3&gt;
-    
-
-    
-        &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;legend&gt;
-        &lt;p&gt;&lt;p&gt;This is a test.&lt;/p&gt;
-
-		  &lt;em&gt;March 18, 2017 at 02:48 AM&lt;/em&gt;
-		&lt;p&gt;
-        &lt;br /&gt;
-    
-        &lt;legend&gt;&lt;strong&gt;Matthew Morris&lt;/strong&gt;&lt;legend&gt;
-        &lt;p&gt;&lt;h2 id=&quot;markdown-test&quot;&gt;Markdown test&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;def fib(n):
-    a, b = 0, 1
-    while a &amp;lt; n:
-        print(a, end=' ')
-        a, b = b, a+b
-    print()
-
-fib(1000)
-&lt;/code&gt;&lt;/pre&gt;
-
-		  &lt;em&gt;March 18, 2017 at 03:21 AM&lt;/em&gt;
-		&lt;p&gt;
-        &lt;br /&gt;
-    
-
-
-&lt;/p&gt;&lt;/p&gt;&lt;/legend&gt;&lt;/legend&gt;&lt;/p&gt;&lt;/p&gt;&lt;/legend&gt;&lt;/legend&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><summary type="html">Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</summary></entry><entry><title type="html">Technical Considerations</title><link href="http://localhost:4000/2017/03/14/technical-considerations.html" rel="alternate" type="text/html" title="Technical Considerations" /><published>2017-03-14T21:40:00-05:00</published><updated>2017-03-14T21:40:00-05:00</updated><id>http://localhost:4000/2017/03/14/technical-considerations</id><content type="html" xml:base="http://localhost:4000/2017/03/14/technical-considerations.html">&lt;p&gt;Happy Pi Day!&lt;/p&gt;
+&lt;/p&gt;&lt;/p&gt;&lt;/legend&gt;&lt;/legend&gt;&lt;/p&gt;&lt;/legend&gt;&lt;/legend&gt;&lt;/p&gt;&lt;/legend&gt;&lt;/legend&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="staticman" /><category term="comments" /><summary type="html">Just a quick note before I get started: It was still March 14 in my time zone when I wrote my previous post, when I generated the static pages using Jekyll, and when I pushed the changes to GitHub, but it seems Netlify’s infrastructure has its own idea of what time it is.</summary></entry><entry><title type="html">Technical Considerations</title><link href="http://localhost:4000/2017/03/14/technical-considerations.html" rel="alternate" type="text/html" title="Technical Considerations" /><published>2017-03-14T15:40:00-05:00</published><updated>2017-03-14T15:40:00-05:00</updated><id>http://localhost:4000/2017/03/14/technical-considerations</id><content type="html" xml:base="http://localhost:4000/2017/03/14/technical-considerations.html">&lt;p&gt;Happy Pi Day!&lt;/p&gt;
 
 &lt;p&gt;I’ve been quiet lately for a few reasons, the most significant of which is that I’ve been focusing on completing the online course, &lt;a href=&quot;https://www.futurelearn.com/courses/functional-programming-erlang&quot;&gt;“Functional Programming in Erlang”&lt;/a&gt;, taught by Simon Thompson of the University of Kent, and hosted by FutureLearn. I may discuss that experience in a future post, but in this post I’d like to focus on my general plans for this web log.&lt;/p&gt;
 
@@ -159,7 +412,15 @@ fib(1000)
 
 &lt;p&gt;
 &lt;hr /&gt;
-&lt;p /&gt;
+&lt;p&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+
 
 &lt;!-- Comment form --&gt;
 &lt;h3&gt;Post a comment:&lt;/h3&gt;
@@ -175,24 +436,17 @@ fib(1000)
     &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
   &lt;/div&gt;
   &lt;div&gt;
-    &lt;legend&gt;Comment&lt;/legend&gt;
-    &lt;textarea style=&quot;width:70%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;kramdown&lt;/a&gt; markup allowed)&lt;/legend&gt;
+    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
   &lt;/div&gt;
   
   &lt;div&gt;
+    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
     &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;
 
-&lt;!-- Static comments --&gt;
-&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
-&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
-&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
-&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
-
-
-
-&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="pelican" /><category term="obelisk" /><category term="python" /><category term="ruby" /><category term="elixir" /><category term="erlang" /><category term="comments" /><summary type="html">Happy Pi Day!</summary></entry><entry><title type="html">Incipit Historia</title><link href="http://localhost:4000/2017/03/04/incipit-historia.html" rel="alternate" type="text/html" title="Incipit Historia" /><published>2017-03-04T16:49:39-06:00</published><updated>2017-03-04T16:49:39-06:00</updated><id>http://localhost:4000/2017/03/04/incipit-historia</id><content type="html" xml:base="http://localhost:4000/2017/03/04/incipit-historia.html">&lt;p&gt;As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.&lt;/p&gt;
+&lt;/p&gt;&lt;/p&gt;</content><author><name></name></author><category term="jekyll" /><category term="pelican" /><category term="obelisk" /><category term="python" /><category term="ruby" /><category term="elixir" /><category term="erlang" /><category term="comments" /><summary type="html">Happy Pi Day!</summary></entry><entry><title type="html">Incipit Historia</title><link href="http://localhost:4000/2017/03/04/incipit-historia.html" rel="alternate" type="text/html" title="Incipit Historia" /><published>2017-03-04T10:49:39-06:00</published><updated>2017-03-04T10:49:39-06:00</updated><id>http://localhost:4000/2017/03/04/incipit-historia</id><content type="html" xml:base="http://localhost:4000/2017/03/04/incipit-historia.html">&lt;p&gt;As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.&lt;/p&gt;
 
 &lt;p&gt;When I first learned about the Internet and the World Wide Web in the mid-1990s, I imagined them as a vast library. When I first logged on, I found it thrilling to visit web pages in other countries and realize that the content I was seeing was hosted on a computer far away, yet arrived on my screen almost instantly–or about as instantly as a 14.4 Kbps modem could manage. At that time there wasn’t much content, even compared with my local library. This was before Wikipedia, YouTube, Flickr, SoundCloud, and so on.&lt;/p&gt;
 
@@ -204,7 +458,15 @@ fib(1000)
 
 &lt;p&gt;
 &lt;hr /&gt;
-&lt;p /&gt;
+&lt;p&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+
 
 &lt;!-- Comment form --&gt;
 &lt;h3&gt;Post a comment:&lt;/h3&gt;
@@ -220,21 +482,14 @@ fib(1000)
     &lt;input name=&quot;fields[email]&quot; type=&quot;email&quot; /&gt;
   &lt;/div&gt;
   &lt;div&gt;
-    &lt;legend&gt;Comment&lt;/legend&gt;
-    &lt;textarea style=&quot;width:70%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
+    &lt;legend&gt;Message (&lt;a href=&quot;https://kramdown.gettalong.org/syntax.html&quot;&gt;kramdown&lt;/a&gt; markup allowed)&lt;/legend&gt;
+    &lt;textarea style=&quot;width:100%&quot; name=&quot;fields[message]&quot; rows=&quot;12&quot;&gt;&lt;/textarea&gt;
   &lt;/div&gt;
   
   &lt;div&gt;
+    &lt;legend&gt;&lt;em&gt;Comments will appear after moderation.&lt;/em&gt;&lt;/legend&gt;
     &lt;button type=&quot;submit&quot;&gt;Submit Comment&lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;
 
-&lt;!-- Static comments --&gt;
-&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
-&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
-&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
-&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
-
-
-
-&lt;/p&gt;</content><author><name></name></author><category term="Internet" /><category term="books" /><category term="knowledge" /><summary type="html">As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.</summary></entry></feed>
+&lt;/p&gt;&lt;/p&gt;</content><author><name></name></author><category term="Internet" /><category term="books" /><category term="knowledge" /><summary type="html">As a child I loved to read, both fiction and non-fiction. My family had a set of encyclopedias, and I often turned to them to learn more about a particular subject, reading through an article, then finding related articles under the “See also:” section at the end, looking up a related article, and so on. I can spend hours in a library or bookstore.</summary></entry></feed>

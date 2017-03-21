@@ -60,7 +60,7 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">Open for Comments</h1>
-    <p class="post-meta"><time datetime="2017-03-17T17:59:00-05:00" itemprop="datePublished">Mar 17, 2017</time></p>
+    <p class="post-meta"><time datetime="2017-03-17T11:59:00-05:00" itemprop="datePublished">Mar 17, 2017</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -134,7 +134,73 @@
 
 <p>
 <hr />
-<p />
+<p>
+
+<!-- Static comments -->
+<!-- Partly based on Made Mistakes' comments.html file: -->
+<!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html -->
+<!-- Also partly based on Eduardo Boucas' reviews.html file -->
+<!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
+
+
+
+  <h3>
+    
+      3
+    
+    Comments:
+  </h3>
+
+  <p>
+  <hr />
+
+  
+
+  
+    <br />
+    <legend><strong>Matthew Morris</strong><legend>
+    <em>March 18, 2017</em>
+    <p><p>This is a test.</p>
+
+    <hr />
+  
+    <br />
+    <legend><strong>Matthew Morris</strong><legend>
+    <em>March 18, 2017</em>
+    <p><h2 id="markdown-test">Markdown test</h2>
+
+<pre><code class="language-Python">def fib(n):
+    a, b = 0, 1
+    while a &lt; n:
+        print(a, end=' ')
+        a, b = b, a+b
+    print()
+
+fib(1000)
+</code></pre>
+
+    <hr />
+  
+    <br />
+    <legend><strong>Matthew Morris</strong><legend>
+    <em>March 18, 2017</em>
+    <p><p>Markdown (or kramdown) syntax highlighting test with triple tildes instead of the triple backticks favored by GitHub Flavored Markdown:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+    <span class="k">print</span><span class="p">()</span>
+
+<span class="n">fib</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</code></pre>
+</div>
+
+    <hr />
+  
+  <p>
+
 
 <!-- Comment form -->
 <h3>Post a comment:</h3>
@@ -150,61 +216,17 @@
     <input name="fields[email]" type="email" />
   </div>
   <div>
-    <legend>Comment</legend>
-    <textarea style="width:70%" name="fields[message]" rows="12"></textarea>
+    <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">kramdown</a> markup allowed)</legend>
+    <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
   </div>
   
   <div>
+    <legend><em>Comments will appear after moderation.</em></legend>
     <button type="submit">Submit Comment</button>
   </div>
 </form>
 
-<!-- Static comments -->
-<!-- Partly based on Made Mistakes' comments.html file: -->
-<!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html -->
-<!-- Also partly based on Eduardo Boucas' reviews.html file -->
-<!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
-
-
-<p>
-<hr />
-<p>
-	<h3>
-      
-        2
-      
-      Comments
-    </h3>
-    
-
-    
-        <legend><strong>Matthew Morris</strong><legend>
-        <p><p>This is a test.</p>
-
-		  <em>March 18, 2017 at 02:48 AM</em>
-		<p>
-        <br />
-    
-        <legend><strong>Matthew Morris</strong><legend>
-        <p><h2 id="markdown-test">Markdown test</h2>
-
-<pre><code class="language-Python">def fib(n):
-    a, b = 0, 1
-    while a &lt; n:
-        print(a, end=' ')
-        a, b = b, a+b
-    print()
-
-fib(1000)
-</code></pre>
-
-		  <em>March 18, 2017 at 03:21 AM</em>
-		<p>
-        <br />
-    
-
-
-</p></p></legend></legend></p></p></legend></legend></p></p></p>
+</p></p></legend></legend></p></legend></legend></p></legend></legend></p></p></p>
 
   </div>
 

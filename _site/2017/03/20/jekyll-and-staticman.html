@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Jekyll and Staticman</title>
+  <meta name="description" content="Last week I enabled comments on this site, thanks to Staticman. After getting comments working, I realized the time stamp was exactly five hours ahead of my ...">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/03/20/jekyll-and-staticman.html">
+  <link rel="alternate" type="application/rss+xml" title="Idiologos" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Idiologos</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Jekyll and Staticman</h1>
+    <p class="post-meta"><time datetime="2017-03-20T08:51:00-05:00" itemprop="datePublished">Mar 20, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Last week I enabled comments on this site, thanks to <a href="https://staticman.net/">Staticman</a>. After getting comments working, I realized the time stamp was exactly five hours ahead of my time which, accounting for daylight saving time, unsurprisingly works out to Universal Coordinated Time. I recalled that Jekyll had a timezone configuration option, so I just added <strong>timezone: US/Central</strong> to my <strong>_config.yml</strong> file, pushed the change to GitHub, and now times on my Netlify site are the same as those on my local system. However, while writing this post, I noticed that it wasn’t being generated. On a hunch, I removed <strong>-0600</strong> (my offset from UTC) from the date of the post in the post header, and immediately it was generated. So you can either specify your offset from UTC in the post header, or specify your timezone in <strong>_config.yml</strong>, but don’t do both. Now let’s get back to configuring Staticman:</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>While configuring Staticman, I used several resources. A basic overview may be found on the Staticman site <a href="https://staticman.net/docs/">here</a>. There is an example site that uses Staticman <a href="http://popcorn.staticman.net/">here</a> (GitHub repository <a href="https://github.com/eduardoboucas/popcorn">here</a>). Also extremely helpful were two articles on Michael Rose’s Made Mistakes blog <a href="https://mademistakes.com/articles/jekyll-static-comments/">here</a> and <a href="https://mademistakes.com/articles/improving-jekyll-static-comments/">here</a>, as well as the Made Mistakes <a href="https://github.com/mmistakes/made-mistakes-jekyll">GitHub repository</a> and the <a href="https://mmistakes.github.io/minimal-mistakes/docs/configuration/">configuration guide</a> for the Minimal Mistakes Jekyll theme (also created by Michael Rose, of course). I decided to keep things fairly simple for the first iteration of my comments implementation. I used some <a href="http://yaml.org/">YAML</a> for Jekyll configuration files, as well as HTML and <a href="https://shopify.github.io/liquid/">Liquid</a> for the comment form and comments <a href="https://jekyllrb.com/docs/templates/">templates</a>, but didn’t bother to do anything fancy with JavaScript or CSS. I’m considering changing the blog’s theme from the default Jekyll Minima theme to something else, and I probably won’t mess with JavaScript or CSS until after I’ve done that.</p>
+
+<h2 id="_configyml">_config.yml</h2>
+
+<p>I added the following lines to my <strong>_config.yml</strong> file, following the example of Made Mistakes:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Name of repository, for use with Staticman</span>
+<span class="s">repository</span><span class="pi">:</span> <span class="s2">"</span><span class="s">anglus/idiologos"</span>
+
+<span class="c1"># Staticman comments (see staticman.yml for configuration).</span>
+<span class="s">staticman</span><span class="pi">:</span>
+  <span class="s">branch</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span></code></pre></figure>
+
+<p>Here <strong>anglus</strong> is my GitHub account name, and <strong>idiologos</strong> is the repository name. New comments will be merged with the <strong>master</strong> branch.</p>
+
+<h2 id="staticmanyml">staticman.yml</h2>
+
+<p>Next, I added a file named <strong>staticman.yml</strong> to my Jekyll site’s root directory:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Name of the property. You can have multiple properties with completely</span>
+<span class="c1"># different config blocks for different sections of your site.</span>
+<span class="c1"># For example, you can have one property to handle comment submission and</span>
+<span class="c1"># another one to handle posts.</span>
+<span class="s">comments</span><span class="pi">:</span>
+  <span class="c1"># (*) REQUIRED</span>
+  <span class="c1">#</span>
+  <span class="c1"># Names of the fields the form is allowed to submit. If a field that is</span>
+  <span class="c1"># not here is part of the request, an error will be thrown.</span>
+  <span class="s">allowedFields</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">name"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">email"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">url"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">message"</span><span class="pi">]</span>
+
+  <span class="c1"># (*) REQUIRED</span>
+  <span class="c1">#</span>
+  <span class="c1"># Name of the branch being used. Must match the one sent in the URL of the</span>
+  <span class="c1"># request.</span>
+  <span class="s">branch</span><span class="pi">:</span> <span class="s2">"</span><span class="s">master"</span>
+
+  <span class="c1"># Text to use as the commit message or pull request title. Accepts placeholders.</span>
+  <span class="s">commitMessage</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Add</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">comment(s)."</span>
+
+  <span class="c1"># (*) REQUIRED</span>
+  <span class="c1">#</span>
+  <span class="c1"># Destination path (filename) for the data files. Accepts placeholders.</span>
+  <span class="s">filename</span><span class="pi">:</span> <span class="s2">"</span><span class="s">comment-{@timestamp}"</span>
+
+  <span class="c1"># The format of the generated data files. Accepted values are "json", "yaml"</span>
+  <span class="c1"># or "frontmatter"</span>
+  <span class="s">format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">yaml"</span>
+
+  <span class="c1"># List of fields to be populated automatically by Staticman and included in</span>
+  <span class="c1"># the data file. Keys are the name of the field. The value can be an object</span>
+  <span class="c1"># with a `type` property, which configures the generated field, or any value</span>
+  <span class="c1"># to be used directly (e.g. a string, number or array)</span>
+  <span class="s">generatedFields</span><span class="pi">:</span>
+    <span class="s">date</span><span class="pi">:</span>
+      <span class="s">type</span><span class="pi">:</span> <span class="s">date</span>
+      <span class="s">options</span><span class="pi">:</span>
+        <span class="s">format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">timestamp-seconds"</span>
+
+  <span class="c1"># Whether entries need to be appproved before they are published to the main</span>
+  <span class="c1"># branch. If set to `true`, a pull request will be created for your approval.</span>
+  <span class="c1"># Otherwise, entries will be published to the main branch automatically.</span>
+  <span class="s">moderation</span><span class="pi">:</span> <span class="s">true</span>
+
+  <span class="c1"># Name of the site. Used in notification emails.</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">idiologos.netlify.com"</span>
+
+  <span class="c1"># Notification settings. When enabled, users can choose to receive notifications</span>
+  <span class="c1"># via email when someone adds a reply or a new comment. This requires an account</span>
+  <span class="c1"># with Mailgun, which you can get for free at http://mailgun.com.</span>
+  <span class="c1">#notifications:</span>
+    <span class="c1"># Enable notifications</span>
+    <span class="c1">#enabled: true</span>
+
+    <span class="c1"># (!) ENCRYPTED</span>
+    <span class="c1">#</span>
+    <span class="c1"># Mailgun API key</span>
+    <span class="c1">#apiKey: ""</span>
+
+    <span class="c1"># (!) ENCRYPTED</span>
+    <span class="c1">#</span>
+    <span class="c1"># Mailgun domain (encrypted)</span>
+    <span class="c1">#domain: ""</span>
+
+  <span class="c1"># (*) REQUIRED</span>
+  <span class="c1">#</span>
+  <span class="c1"># Destination path (directory) for the data files. Accepts placeholders.</span>
+  <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">_data/comments/{options.slug}"</span>
+
+  <span class="c1"># Names of required files. If any of these isn't in the request or is empty,</span>
+  <span class="c1"># an error will be thrown.</span>
+  <span class="s">requiredFields</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">name"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">message"</span><span class="pi">]</span>
+
+  <span class="c1"># List of transformations to apply to any of the fields supplied. Keys are</span>
+  <span class="c1"># the name of the field and values are possible transformation types.</span>
+  <span class="s">transforms</span><span class="pi">:</span>
+    <span class="s">email</span><span class="pi">:</span> <span class="s">md5</span></code></pre></figure>
+
+<p>I used the Staticman sample config file <a href="https://github.com/eduardoboucas/staticman/blob/master/staticman.sample.yml">here</a>, but made some modifications using the Made Mistakes config file <a href="https://github.com/mmistakes/made-mistakes-jekyll/blob/master/staticman.yml">here</a>. I don’t make use of all of the configuration options in the above file yet. Note that moderation is set to “true”, which means that comments will not be posted automatically; instead I must approve a GitHub pull request in order to merge new comments into the site. Also note that your e-mail address, if you choose to enter it, is automatically hashed using MD5. I don’t make use of it yet, but it could be useful for Gravatar or some such, or for e-mail notifications if I implement them in the future.</p>
+
+<h2 id="_includescommentshtml">_includes/comments.html</h2>
+
+<p>I took a look at the way Made Mistakes implemented the commenting templates, as well as the Popcorn sample site. In the end, I decided the simplest way to implement the new comment form and the posted comments template was as a single template. I used the sample template in the Staticman documentation (“Step 3. Hook up your forms” <a href="https://staticman.net/docs/">here</a>) as a base, and changed things around according to my taste. This is what I have currently for my comment form (HTML highlighted):</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- Comment form --&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Post a comment:<span class="nt">&lt;/h3&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"https://api.staticman.net/v2/entry/{{ site.repository }}/{{ site.staticman.branch }}/comments"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"options[redirect]"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"https://idiologos.netlify.com"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"options[slug]"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"{{ page.slug }}"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;legend&gt;</span>Name<span class="nt">&lt;/legend&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"fields[name]"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;legend&gt;</span>E-mail (optional)<span class="nt">&lt;/legend&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"fields[email]"</span> <span class="na">type=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;legend&gt;</span>Message (<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://kramdown.gettalong.org/syntax.html"</span><span class="nt">&gt;</span>kramdown<span class="nt">&lt;/a&gt;</span> markup allowed)<span class="nt">&lt;/legend&gt;</span>
+    <span class="nt">&lt;textarea</span> <span class="na">style=</span><span class="s">"width:100%"</span> <span class="na">name=</span><span class="s">"fields[message]"</span> <span class="na">rows=</span><span class="s">"12"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;legend&gt;&lt;em&gt;</span>Comments will appear after moderation.<span class="nt">&lt;/em&gt;&lt;/legend&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Submit Comment<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+
+<p>This just a basic HTML form, with three Liquid objects: <strong>site.repository</strong> (“anglus/idiologos”), <strong>site.staticman.branch</strong> (“master”), and <strong>page.slug</strong> (the file name of the blog post, e.g. “jekyll-and-staticman” for this post). The important point here is that clicking the submit button sends an HTML POST command to <strong>https://api.staticman.net/v2/entry/anglus/idiologos/master/comments</strong>. In order to make the comment form show up on my posts, I added the following Liquid tag at the bottom of each post:</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">comments</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="p">%}</span></code></pre></figure>
+
+<p>At some point I should probably add a post template that includes the comments template, so it’s automatically included in each post. But I think I’ll wait to do that until I understand better how Jekyll themes are organized.</p>
+
+<h2 id="github-configuration">GitHub configuration</h2>
+
+<p>Configuring my GitHub repository was very straightforward following the <a href="https://staticman.net/docs/">documentation</a> on the Staticman site. The relevant portion of the documentation here is “Step 1. Add Staticman to your repository”. I logged in to my GitHub account, navigated to <strong>Settings –&gt; Collaborators</strong> under the repository for this site, and added the GitHub user <strong>staticmanapp</strong> as a collaborator. That done, I entered <strong>https://api.staticman.net/v2/connect/anglus/idiologos</strong> into my browser and saw a page that read simply “OK!”.</p>
+
+<h2 id="deployment-and-testing">Deployment and testing</h2>
+
+<p>With Staticman configured to handle comments, it was time to test. I pushed my changes to GitHub, waited for the comment form to appear on Netlify, and then posted a test comment. The comment appeared almost immediately as a pull request to my GitHub repository–the first pull request I’ve ever received, even if it was from a bot. I merged the request, and it appeared in a new <strong>_data/comments/…</strong> directory in my repository. Staticman also sent me an e-mail notification, but I didn’t notice that until after I’d merged the comment.</p>
+
+<h2 id="_includescommentshtml-again">_includes/comments.html (again)</h2>
+
+<p>Now that I had a Staticman comment, I needed to integrate it into my post. As I had already included the <strong>_includes/comments.html</strong> file in my post, I decided to add the posted comments template to the same file. At first I placed the posted comments after the comment form, but as I have my comments sorted in chronological order, I felt it was more logical to place the posted comments first, and the comment form after the last posted comment. Here is the posted comments template (Liquid highlighted):</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid">&lt;p&gt;
+&lt;hr&gt;
+&lt;p&gt;
+
+&lt;!-- Static comments --&gt;
+&lt;!-- Partly based on Made Mistakes' comments.html file: --&gt;
+&lt;!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html --&gt;
+&lt;!-- Also partly based on Eduardo Boucas' reviews.html file --&gt;
+&lt;!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html --&gt;
+
+<span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">comments</span><span class="p">[</span><span class="nv">page</span><span class="p">.</span><span class="nv">slug</span><span class="p">]</span><span class="w"> </span><span class="p">%}</span>
+
+  &lt;h3&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">comments</span><span class="p">[</span><span class="nv">page</span><span class="p">.</span><span class="nv">slug</span><span class="p">].</span><span class="nv">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">comments</span><span class="p">[</span><span class="nv">page</span><span class="p">.</span><span class="nv">slug</span><span class="p">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">}}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+    Comments:
+  &lt;/h3&gt;
+
+  &lt;p&gt;
+  &lt;hr&gt;
+
+  <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">comments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">comments</span><span class="p">[</span><span class="nv">page</span><span class="p">.</span><span class="nv">slug</span><span class="p">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">sort</span><span class="w"> </span><span class="p">%}</span>
+
+  <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span>comment<span class="w"> </span>in<span class="w"> </span>comments<span class="w"> </span><span class="p">%}</span>
+    &lt;br&gt;
+    &lt;legend&gt;&lt;strong&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">comment</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>&lt;/strong&gt;&lt;legend&gt;
+    &lt;em&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">comment</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s2">"%B %d, %Y"</span><span class="w"> </span><span class="p">}}</span>&lt;/em&gt;
+    &lt;p&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">comment</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nv">message</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">markdownify</span><span class="w"> </span><span class="p">}}</span>
+    &lt;hr&gt;
+  <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+  &lt;p&gt;
+<span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span></code></pre></figure>
+
+<p>The portion in the <strong>&lt;h3&gt;</strong> tags displays “Comments:” if there is at least one comment, and “X Comments:” where X is the number of posted comments if there are two or more comments. The Liquid <strong>assign</strong> tag includes a sort filter. As the comments are stored in the form “comment-1234567890123.yml”, where 1234567890123 is the time stamp, they will be sorted in chronological order, oldest first, newest last. The Liquid <strong>for</strong> loop takes (some of) the fields in each comment, and outputs them as HTML: name, date (in the form “March 20, 2017”), and the text of the comment. The comment text is passed through a filter which converts any Markdown syntax to HTML tags.</p>
+
+<p>You might think that Jekyll, being developed by one of the founders of GitHub, and being the recommended static site generator for GitHub pages, would use <a href="https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown">GitHub Flavored Markdown</a>. If you thought that, you would be wrong. Instead, Jekyll uses <a href="https://kramdown.gettalong.org/syntax.html">kramdown</a>. I am not well-versed in all of the differences between GFM syntax and kramdown syntax. However, one important difference between the two is in the syntax of fenced code blocks. Plain vanilla Markdown uses indentation to mark code blocks. GFM and kramdown both also have fenced code blocks that allow you to specify the language the code block is written in, which allows for proper syntax highlighting of the code. GFM uses <a href="https://help.github.com/articles/creating-and-highlighting-code-blocks/#syntax-highlighting">triple backticks</a> (`) to begin and end a fenced code block, whereas kramdown uses <a href="https://kramdown.gettalong.org/syntax.html#fenced-code-blocks">triple tildes</a> (~). The language may be specified on the same line as the opening backticks or tildes.</p>
+
+<p>One strange thing I noticed was that my comments section appears properly formatted if I only use opening <strong>&lt;p&gt;</strong> tags, but if I try to close my paragraphs with <strong>&lt;/p&gt;</strong> tags, then it breaks the formatting of my comments. I’m not sure exactly where the problem lies, but I suspect it has to do with the way kramdown converts the comment text to HTML.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>For now my comment form is missing some behavior that could be implemented with JavaScript. Also, the styling could be improved with some CSS. As I have mentioned above, I will probably work on that after I have switched to a different theme, if the theme is still lacking. I don’t know how many Jekyll themes work with Staticman, or with plain vanilla HTML forms like I’ve used for Staticman. Obviously “Minimal Mistakes” does, but I will probably use another theme, and the other themes I’ve seen assume that if anything is being used for comments, it’s Disqus. Another problem is what to do when a comment is submitted. For now the behavior is to dump you back on the home page. I believe I should be able to change that with a small modification to <strong>_includes/comments.html</strong>. Also as I mentioned above, comments are moderated. If comment moderation becomes too much of a barrier, or too much of a burden, I will look at integrating reCAPTCHA or some other solution for filtering spam, and then set moderation to “false”.</p>
+
+<p>Thank you very much to Eduardo Boucas for writing Staticman, and to Michael Rose for documenting it so well!</p>
+
+<p>
+<hr />
+<p>
+
+<!-- Static comments -->
+<!-- Partly based on Made Mistakes' comments.html file: -->
+<!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html -->
+<!-- Also partly based on Eduardo Boucas' reviews.html file -->
+<!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
+
+
+
+<!-- Comment form -->
+<h3>Post a comment:</h3>
+<form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
+  <input name="options[redirect]" type="hidden" value="https://idiologos.netlify.com" />
+  <input name="options[slug]" type="hidden" value="jekyll-and-staticman" />
+  <div>
+    <legend>Name</legend>
+    <input name="fields[name]" type="text" />
+  </div>
+  <div>
+    <legend>E-mail (optional)</legend>
+    <input name="fields[email]" type="email" />
+  </div>
+  <div>
+    <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">kramdown</a> markup allowed)</legend>
+    <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
+  </div>
+  
+  <div>
+    <legend><em>Comments will appear after moderation.</em></legend>
+    <button type="submit">Submit Comment</button>
+  </div>
+</form>
+
+</p></p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Idiologos</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Idiologos
+            
+            </li>
+            
+            <li><a href="mailto:anglus@gmail.com">anglus@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/anglus"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">anglus</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/sumwiht"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">sumwiht</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Musings about language, computation, and the intersection of the two.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Technical Considerations"
-date: 2017-03-14 20:40:00 -0600
+date: 2017-03-14 20:40:00
 tags: jekyll pelican obelisk python ruby elixir erlang comments 
 ---
 Happy Pi Day!
