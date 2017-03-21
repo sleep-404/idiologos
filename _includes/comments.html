@@ -1,10 +1,40 @@
 <p>
-<hr />
-<p/>
+<hr>
+<p>
+
+<!-- Static comments -->
+<!-- Partly based on Made Mistakes' comments.html file: -->
+<!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html -->
+<!-- Also partly based on Eduardo Boucas' reviews.html file -->
+<!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
+
+{% if site.data.comments[page.slug] %}
+
+  <h3>
+    {% if site.data.comments[page.slug].size > 1 %}
+      {{ site.data.comments[page.slug] | size }}
+    {% endif %}
+    Comments:
+  </h3>
+
+  <p>
+  <hr>
+
+  {% assign comments = site.data.comments[page.slug] | sort %}
+
+  {% for comment in comments %}
+    <br>
+    <legend><strong>{{ comment[1].name }}</strong><legend>
+    <em>{{ comment[1].date | date: "%B %d, %Y" }}</em>
+    <p>{{ comment[1].message | markdownify }}
+    <hr>
+  {% endfor %}
+  <p>
+{% endif %}
 
 <!-- Comment form -->
 <h3>Post a comment:</h3>
-<form method="POST" action="https://api.staticman.net/v2/entry/anglus/idiologos/master/comments">
+<form method="POST" action="https://api.staticman.net/v2/entry/{{ site.repository }}/{{ site.staticman.branch }}/comments">
   <input name="options[redirect]" type="hidden" value="https://idiologos.netlify.com">
   <input name="options[slug]" type="hidden" value="{{ page.slug }}">
   <div>
@@ -16,38 +46,12 @@
     <input name="fields[email]" type="email">
   </div>
   <div>
-    <legend>Comment</legend>
-    <textarea style="width:70%" name="fields[message]" rows="12"></textarea>
+    <legend>Message (<a href="https://kramdown.gettalong.org/syntax.html">kramdown</a> markup allowed)</legend>
+    <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
   </div>
   
   <div>
+    <legend><em>Comments will appear after moderation.</em></legend>
     <button type="submit">Submit Comment</button>
   </div>
 </form>
-
-<!-- Static comments -->
-<!-- Partly based on Made Mistakes' comments.html file: -->
-<!-- https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/comments.html -->
-<!-- Also partly based on Eduardo Boucas' reviews.html file -->
-<!-- https://github.com/eduardoboucas/popcorn/blob/gh-pages/_includes/reviews.html -->
-
-{% if site.data.comments[page.slug] %}
-<p>
-<hr />
-<p>
-	<h3>
-      {% if site.data.comments[page.slug].size > 1 %}
-        {{ site.data.comments[page.slug] | size }}
-      {% endif %}
-      Comments
-    </h3>
-    {% assign comments = site.data.comments[page.slug] | sort %}
-
-    {% for comment in comments %}
-        <legend><strong>{{ comment[1].name }}</strong><legend>
-        <p>{{ comment[1].message | markdownify }}
-		  <em>{{ comment[1].date | date: "%B %d, %Y at %I:%M %p" }}</em>
-		<p>
-        <br />
-    {% endfor %}
-{% endif %}
