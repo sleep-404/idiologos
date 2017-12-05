@@ -1,0 +1,6 @@
+_id: d3e9b180-cbb0-11e7-8693-31757520ddf1
+name: JoeHx
+email: e591f3aa7c8cbd7dd9e3389958949ed3
+url: 'https://hendrixjoseph.github.io'
+message: "I just implemented Staticman myself. It's pretty cool, I think, especially since I had almost given up on an on-site commenting system. I had been using Facebook comments, but it was kind of buggy and I would lose comments occasionally when the API was updated.\r\n\r\nAlso, you can grab profile images for the MD5 hash of an email address from gravatar really easy. The url for the profile images is https://www.gravatar.com/avatar/MD5-HASH . Just put it in an image tag and your good to go!"
+date: 1510934599
